@@ -11,7 +11,12 @@ export default function Home() {
       
       <main className="container mx-auto max-w-[1280px] px-[15px] flex flex-col md:flex-row gap-[30px] mt-[20px]">
         <div className="flex-1 min-w-0">
-          <PostList posts={content.posts} />
+          {(() => {
+            const selected = content.posts.filter(
+              (p: any) => p.id === "tag:blogger.com,1999:blog-3066255942376026513.post-4582477378962155648"
+            );
+            return <PostList posts={selected} />;
+          })()}
         </div>
         
         <Sidebar />
