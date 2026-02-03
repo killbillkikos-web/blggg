@@ -1,48 +1,65 @@
+"use client";
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Calendar, User, ArrowLeft, ArrowRight, Home, Twitter, Facebook, Share2 } from 'lucide-react';
 
 const MainArticle = () => {
   return (
-    <div className="bg-white p-[15px] border border-[#DDDDDD] flex flex-col gap-4">
-      {/* Date Header */}
-      <div className="border-b border-[#EEEEEE] mb-4">
-        <h2 className="font-date inline-block pb-1">
+    <motion.article 
+      className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Article Header */}
+      <div className="p-6 md:p-10 pb-0">
+        {/* Date Header */}
+        <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
+          <Calendar className="w-4 h-4 text-teal-600" />
           <span>Τετάρτη 6 Μαΐου 2020</span>
-        </h2>
+        </div>
+
+        {/* Post Title */}
+        <h1 className="text-3xl md:text-4xl font-display font-semibold text-gray-900 leading-tight mb-6">
+          <Link href="#" className="hover:text-teal-700 transition-colors">
+            Μήπως δεν εκτίθεστε όσο πρέπει;
+          </Link>
+        </h1>
+
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-8" />
       </div>
 
-      <article className="post hentry">
-        {/* Post Title */}
-        <h3 className="text-[22px] font-display text-[#000080] leading-[1.4] mb-2">
-          <a href="#" className="hover:underline">Μήπως δεν εκτίθεστε όσο πρέπει;</a>
-        </h3>
-
-        <div className="post-body font-serif text-[16px] text-[#333333] leading-[1.5]">
-          <div className="mb-6">
-            <h2 className="text-[18px] font-display font-normal underline mb-4">
-              Εκτεθείτε…. στον Ήλιο,
-            </h2>
-            <div className="flex flex-col items-center italic mb-4">
-              <p className="underline text-center">Πάρτε συμπληρώματα Βιταμίνης D &</p>
-              <p className="underline text-center">Μειώστε τον κίνδυνο του καρκίνου!!</p>
-            </div>
-            <div className="flex flex-col items-center italic mb-4">
-              <p className="underline text-center">Ο Ήλιος, τα Συμπληρώματα και ο ρόλος της Βιταμίνης D</p>
-              <p className="underline text-center">στη μείωση του κινδύνου και της εξέλιξης του καρκίνου!!!</p>
-            </div>
+      {/* Article Content */}
+      <div className="prose prose-lg max-w-none px-6 md:px-10">
+        <div className="mb-8">
+          <h2 className="text-2xl font-display font-semibold text-gray-900 underline decoration-teal-500 decoration-2 underline-offset-4 mb-6">
+            Εκτεθείτε…. στον Ήλιο,
+          </h2>
+          <div className="flex flex-col items-center text-center italic mb-6 space-y-1">
+            <p className="underline decoration-gray-400">Πάρτε συμπληρώματα Βιταμίνης D &</p>
+            <p className="underline decoration-gray-400">Μειώστε τον κίνδυνο του καρκίνου!!</p>
           </div>
-
-          <div className="mb-8">
-            <h2 className="text-[14px] font-display italic leading-snug">
-              Επιλογή, Επεξεργασία και Μετάφραση ερευνών: <span className="font-bold">Κατερίνα Μηστριώτη</span> - Σύμβουλος Κλινικής Διατροφολογίας και Ολιστικών Εφαρμογών
-            </h2>
-            <h2 className="text-[14px] font-display italic leading-snug">
-              Πηγές/Έρευνες /Ερευνητές: Βλ. τέλος άρθρου
-            </h2>
+          <div className="flex flex-col items-center text-center italic mb-6 space-y-1">
+            <p className="underline decoration-gray-400">Ο Ήλιος, τα Συμπληρώματα και ο ρόλος της Βιταμίνης D</p>
+            <p className="underline decoration-gray-400">στη μείωση του κινδύνου και της εξέλιξης του καρκίνου!!!</p>
           </div>
+        </div>
 
-          {/* Sun Banner Image */}
-          <div className="flex justify-center mb-6">
+        <div className="mb-10 p-6 bg-gradient-to-r from-teal-50 to-emerald-50 rounded-xl border-l-4 border-teal-500">
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Επιλογή, Επεξεργασία και Μετάφραση ερευνών: <span className="font-semibold text-gray-800">Κατερίνα Μηστριώτη</span> - Σύμβουλος Κλινικής Διατροφολογίας και Ολιστικών Εφαρμογών
+          </p>
+          <p className="text-sm text-gray-600 mt-2">
+            Πηγές/Έρευνες /Ερευνητές: Βλ. τέλος άρθρου
+          </p>
+        </div>
+
+        {/* Sun Banner Image */}
+        <div className="flex justify-center mb-8">
+          <div className="relative rounded-xl overflow-hidden shadow-lg">
             <Image 
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/15-2.png"
               alt="Vitamin D and Sun"
@@ -51,13 +68,17 @@ const MainArticle = () => {
               className="max-w-full h-auto"
             />
           </div>
+        </div>
 
-          <div className="italic mb-6">
+        <blockquote className="my-8 pl-6 border-l-4 border-teal-500 bg-gradient-to-r from-teal-50 to-transparent py-4 pr-4 rounded-r-xl">
+          <p className="italic text-gray-700 leading-relaxed">
             Σύμφωνα με σοβαρές επιστημονικές έρευνες, «οι γυναίκες με χαμηλά επίπεδα Βιταμίνης D στο αίμα, έχουν σχεδόν διπλάσιες (97%) πιθανότητες να αναπτύξουν καρκίνο του μαστού σε σύγκριση με εκείνες με τα υψηλότερα επίπεδα».
-          </div>
+          </p>
+        </blockquote>
 
-          {/* Awareness Image */}
-          <div className="flex justify-center mb-6">
+        {/* Awareness Image */}
+        <div className="flex justify-center mb-8">
+          <div className="relative rounded-xl overflow-hidden shadow-lg">
             <Image 
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/19__Vit-D-awareness-offer-3.jpg" 
               alt="Vitamin D awareness"
@@ -66,15 +87,17 @@ const MainArticle = () => {
               className="max-w-full h-auto"
             />
           </div>
+        </div>
 
-          <p className="italic mb-4">
-            Αποφεύγουμε τα χαμηλά επίπεδα απολαμβάνοντας καθημερινά, με σωστό τρόπο*, τον Ήλιο – χωρίς αντηλιακό και χωρίς γυαλιά ηλίου - και παίρνοντας συμπληρώματα διατροφής Βιταμίνης D.
-          </p>
+        <p className="italic mb-6 text-gray-700">
+          Αποφεύγουμε τα χαμηλά επίπεδα απολαμβάνοντας καθημερινά, με σωστό τρόπο*, τον Ήλιο – χωρίς αντηλιακό και χωρίς γυαλιά ηλίου - και παίρνοντας συμπληρώματα διατροφής Βιταμίνης D.
+        </p>
 
-          <p className="italic mb-4">Αυτός είναι ένας εύκολος, οικονομικός και ασφαλής τρόπος για τη μείωση:</p>
+        <p className="italic mb-4 text-gray-700">Αυτός είναι ένας εύκολος, οικονομικός και ασφαλής τρόπος για τη μείωση:</p>
 
-          {/* Breast Cancer Prevention Image */}
-          <div className="flex justify-center mb-6">
+        {/* Breast Cancer Prevention Image */}
+        <div className="flex justify-center mb-8">
+          <div className="relative rounded-xl overflow-hidden shadow-lg">
             <Image 
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/vit_d_breast_cancer-4.png"
               alt="Vitamin D for Breast Cancer Prevention"
@@ -83,27 +106,38 @@ const MainArticle = () => {
               className="max-w-full h-auto"
             />
           </div>
+        </div>
 
-          <ul className="italic mb-6 list-none p-0">
-            <li className="mb-2">α) της συχνότητας εμφάνισης,</li>
-            <li className="mb-2">β) την βελτίωση της πρόγνωσης και</li>
-            <li className="mb-2">γ) της έκβασης του καρκίνου!</li>
-          </ul>
+        <ul className="italic mb-8 list-none space-y-3">
+          <li className="flex items-start gap-3">
+            <span className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 text-sm font-semibold flex-shrink-0">α</span>
+            <span className="text-gray-700">της συχνότητας εμφάνισης,</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 text-sm font-semibold flex-shrink-0">β</span>
+            <span className="text-gray-700">την βελτίωση της πρόγνωσης και</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 text-sm font-semibold flex-shrink-0">γ</span>
+            <span className="text-gray-700">της έκβασης του καρκίνου!</span>
+          </li>
+        </ul>
 
-          <p className="italic mb-6 text-sm">(επιπλέον έρευνες βρίσκονται σε εξέλιξη)</p>
+        <p className="italic text-sm text-gray-500 mb-8">(επιπλέον έρευνες βρίσκονται σε εξέλιξη)</p>
 
-          <p className="italic mb-4">
-            Η Βιταμίνη D στην πραγματικότητα δεν είναι Βιταμίνη!
-          </p>
-          <p className="italic mb-6">
-            Είναι ο πρόδρομος της ισχυρής στεροειδούς ορμόνης καλσιτριόλης, η οποία έχει εκτεταμένες δράσεις σε ολόκληρο τον οργανισμό, ρυθμίζοντας πολλές κυτταρικές διεργασίες που θα μπορούσαν να παίζουν ρόλο στην πρόληψη μιας σειράς καρκίνων (μαστού, παχέως εντέρου, ουροδόχου κύστεως, προστάτη αλλά και άλλων σοβαρών παθήσεων).
-          </p>
+        <p className="italic mb-4 text-gray-700">
+          Η Βιταμίνη D στην πραγματικότητα δεν είναι Βιταμίνη!
+        </p>
+        <p className="italic mb-8 text-gray-700">
+          Είναι ο πρόδρομος της ισχυρής στεροειδούς ορμόνης καλσιτριόλης, η οποία έχει εκτεταμένες δράσεις σε ολόκληρο τον οργανισμό, ρυθμίζοντας πολλές κυτταρικές διεργασίες που θα μπορούσαν να παίζουν ρόλο στην πρόληψη μιας σειράς καρκίνων (μαστού, παχέως εντέρου, ουροδόχου κύστεως, προστάτη αλλά και άλλων σοβαρών παθήσεων).
+        </p>
 
-          <p className="italic mb-4 text-[#000080]">
-            Από την τροφή μας μπορούμε να πάρουμε ελάχιστη ποσότητα Βιταμίνης D (D3) από την συνολική που χρειαζόμαστε.
-          </p>
+        <p className="italic mb-6 text-teal-700 font-medium">
+          Από την τροφή μας μπορούμε να πάρουμε ελάχιστη ποσότητα Βιταμίνης D (D3) από την συνολική που χρειαζόμαστε.
+        </p>
 
-          <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-8">
+          <div className="relative rounded-xl overflow-hidden shadow-lg">
             <Image 
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/18__6222-5.jpg"
               alt="Vitamin D sources"
@@ -112,29 +146,41 @@ const MainArticle = () => {
               className="max-w-full h-auto"
             />
           </div>
+        </div>
 
-          <p className="italic mb-6">
-            Έτσι τα Συμπληρώματα και η σωστή* έκθεσή μας στον Ήλιο, είναι η απάντηση!!!!
+        <p className="italic mb-8 text-gray-700 text-lg font-medium text-center">
+          Έτσι τα Συμπληρώματα και η σωστή* έκθεσή μας στον Ήλιο, είναι η απάντηση!!!!
+        </p>
+
+        {/* Note Box */}
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-6 rounded-xl border border-amber-200 mb-10">
+          <p className="italic font-semibold text-amber-800 mb-2">Σημείωση:</p>
+          <p className="italic text-amber-900 leading-relaxed">
+            Η Bιταμίνη D3 εμπλέκεται σε έναν λεπτό χορό με την Bιταμίνη K2, και θα πρέπει να έχετε και τα δύο συστατικά σε συνεργικές μεταξύ τους και επαρκείς ποσότητες για να εξασφαλίσετε βέλτιστη υγεία. Τα περισσότερα συμπληρώματα αποδίδουν αυτόν τον συνδυασμό.
           </p>
+        </div>
 
-          <div className="bg-[#f0f8ff] p-4 border-l-4 border-[#0000FF] mb-8">
-            <p className="italic font-bold mb-2">Σημείωση:</p>
-            <p className="italic">
-              Η Bιταμίνη D3 εμπλέκεται σε έναν λεπτό χορό με την Bιταμίνη K2, και θα πρέπει να έχετε και τα δύο συστατικά σε συνεργικές μεταξύ τους και επαρκείς ποσότητες για να εξασφαλίσετε βέλτιστη υγεία. Τα περισσότερα συμπληρώματα αποδίδουν αυτόν τον συνδυασμό.
-            </p>
+        {/* Sun Exposure Section */}
+        <div className="mb-10">
+          <h3 className="text-xl font-display font-semibold italic border-b-2 border-teal-500 pb-2 mb-6">
+            *Σωστός τρόπος έκθεσης στον ήλιο:
+          </h3>
+          
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <div className="bg-gradient-to-r from-yellow-50 to-amber-50 p-5 rounded-xl">
+              <p className="font-semibold text-amber-800 mb-2">Καλοκαίρι:</p>
+              <p className="text-amber-900">Πρωί: μέχρι τις 12.00</p>
+              <p className="text-amber-900">Απόγευμα: από τις 18.00 και μετά</p>
+            </div>
+            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-5 rounded-xl">
+              <p className="font-semibold text-blue-800 mb-2">Υπόλοιπος χρόνος:</p>
+              <p className="text-blue-900">Ελεύθερα οποιαδήποτε ώρα</p>
+              <p className="text-blue-900">Τουλάχιστον 45 λεπτά/ημέρα</p>
+            </div>
           </div>
 
-          <div className="mb-8">
-            <h3 className="italic font-bold border-b border-[#DDDDDD] pb-1 mb-4">
-              *Σωστός τρόπος έκθεσης στον ήλιο:
-            </h3>
-            
-            <p className="italic mb-2 font-bold">Καλοκαίρι:</p>
-            <p className="italic mb-4">Πρωί : μέχρι τις 12.00 &nbsp;&nbsp;&nbsp; Απόγευμα: από τις 18.00 και μετά</p>
-            
-            <p className="italic mb-6">Τον υπόλοιπο χρόνο, ελεύθερα οποιαδήποτε ώρα και για τουλάχιστον συνολικά 45 λεπτά την ημέρα.</p>
-
-            <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-8">
+            <div className="relative rounded-xl overflow-hidden shadow-lg">
               <Image 
                 src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/1___vitamin_D-6.jpg"
                 alt="Woman drinking water in sun"
@@ -143,16 +189,18 @@ const MainArticle = () => {
                 className="max-w-full h-auto"
               />
             </div>
+          </div>
 
-            <p className="italic text-center font-bold mb-8">
-              Πάντοτε ενυδατωμένοι το καλοκαίρι κατά την διάρκεια της έκθεσής μας στον ήλιο (πίνουμε συχνά νερό)
-            </p>
+          <p className="italic text-center font-semibold text-teal-700 mb-8 text-lg">
+            Πάντοτε ενυδατωμένοι το καλοκαίρι κατά την διάρκεια της έκθεσής μας στον ήλιο (πίνουμε συχνά νερό)
+          </p>
 
-            <p className="italic mb-6">
-              Εάν έχουμε ευαίσθητο δέρμα, είναι καλό να φοράμε ένα λεπτό λευκό μπλουζάκι που θα απομακρύνει την πιθανότητα εγκαύματος.
-            </p>
+          <p className="italic mb-8 text-gray-700">
+            Εάν έχουμε ευαίσθητο δέρμα, είναι καλό να φοράμε ένα λεπτό λευκό μπλουζάκι που θα απομακρύνει την πιθανότητα εγκαύματος.
+          </p>
 
-            <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-8">
+            <div className="relative rounded-xl overflow-hidden shadow-lg">
               <Image 
                 src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/18__vitamin_D-7.jpg"
                 alt="Safe sun exposure"
@@ -161,40 +209,86 @@ const MainArticle = () => {
                 className="max-w-full h-auto"
               />
             </div>
-
-            <p className="italic font-bold">Φοράμε πάντοτε καπέλο ανοιχτόχρωμο με γείσο.</p>
           </div>
-          
-          <div className="mt-12 text-[11px] font-sans text-[#2244BB] border-t border-[#DDDDDD] pt-6 overflow-hidden">
-            <h4 className="font-bold text-[14px] text-[#666666] uppercase mb-4">Έρευνες/Πηγές</h4>
-            <div className="flex flex-col gap-2">
-              <p>1. Bray F, Ferlay J, Soerjomataram I, Siegel RL, Torre LA, Jemal A. Global cancer statistics 2018: GLOBOCAN estimates of incidence and mortality worldwide...</p>
-              <p>2. Clegg LX, Li FP, Hankey BF, Chu K, Edwards BK. Cancer survival among US whites and minorities: a SEER analytics report...</p>
-              <p>3. Siegel RL, Miller KD, Jemal A. Cancer statistics, 2019. CA Cancer J Clin. 2019; 69:7–34. doi: 10.3322/caac.21551 [PubMed] [CrossRef] [Google Scholar]</p>
-              <p>4. Okazaki R. [Vitamin D and cancer]. Clin Calcium. 2014; 24:1193–99. [PubMed] [Google Scholar]</p>
-              <p>5. Dunn JA, Jefferson K, MacDonald D, Iqbal G, Bland R. Low serum 25-hydroxyvitamin D is associated with increased bladder cancer risk...</p>
-              <p className="text-[10px] text-gray-400 mt-4 italic">... [Περισσότερες πηγές διαθέσιμες στο πρωτότυπο άρθρο]</p>
-            </div>
+
+          <p className="italic font-semibold text-gray-800 flex items-center gap-2">
+            <span className="text-xl">👒</span>
+            Φοράμε πάντοτε καπέλο ανοιχτόχρωμο με γείσο.
+          </p>
+        </div>
+        
+        {/* References */}
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <h4 className="font-semibold text-sm text-gray-500 uppercase tracking-wide mb-4">
+            Έρευνες/Πηγές
+          </h4>
+          <div className="text-xs text-gray-500 space-y-2 leading-relaxed">
+            <p>1. Bray F, Ferlay J, Soerjomataram I, Siegel RL, Torre LA, Jemal A. Global cancer statistics 2018: GLOBOCAN estimates of incidence and mortality worldwide...</p>
+            <p>2. Clegg LX, Li FP, Hankey BF, Chu K, Edwards BK. Cancer survival among US whites and minorities: a SEER analytics report...</p>
+            <p>3. Siegel RL, Miller KD, Jemal A. Cancer statistics, 2019. CA Cancer J Clin. 2019; 69:7–34.</p>
+            <p>4. Okazaki R. [Vitamin D and cancer]. Clin Calcium. 2014; 24:1193–99.</p>
+            <p>5. Dunn JA, Jefferson K, MacDonald D, Iqbal G, Bland R. Low serum 25-hydroxyvitamin D is associated with increased bladder cancer risk...</p>
+            <p className="text-gray-400 italic mt-4">... [Περισσότερες πηγές διαθέσιμες στο πρωτότυπο άρθρο]</p>
           </div>
         </div>
-
-        <footer className="mt-8 pt-4 border-t border-[#EEEEEE] flex justify-between items-center">
-          <div className="flex gap-2">
-            <button className="text-[12px] font-sans text-[#999999] hover:bg-gray-100 p-1">Share to Twitter</button>
-            <button className="text-[12px] font-sans text-[#999999] hover:bg-gray-100 p-1">Share to Facebook</button>
-          </div>
-          <div className="font-date">
-            Αναρτήθηκε από <a href="#" className="underline">Katerina Mistrioti</a> στις 2:57 μ.μ.
-          </div>
-        </footer>
-      </article>
-
-      <div className="flex justify-between items-center text-[13px] font-nav mt-10 pt-4 border-t-2 border-[#EEEEEE]">
-        <a href="#" className="text-[#0000FF]">&lt; Νεότερη ανάρτηση</a>
-        <a href="#" className="text-[#0000FF]">Αρχική σελίδα</a>
-        <a href="#" className="text-[#0000FF]">Παλαιότερες αναρτήσεις &gt;</a>
       </div>
-    </div>
+
+      {/* Article Footer */}
+      <div className="px-6 md:px-10 py-8 mt-8 border-t border-gray-100">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          {/* Share Buttons */}
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-gray-500">Μοιραστείτε:</span>
+            <motion.button 
+              className="p-2 bg-gray-100 hover:bg-[#1DA1F2] text-gray-500 hover:text-white rounded-full transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Twitter className="w-4 h-4" />
+            </motion.button>
+            <motion.button 
+              className="p-2 bg-gray-100 hover:bg-[#4267B2] text-gray-500 hover:text-white rounded-full transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Facebook className="w-4 h-4" />
+            </motion.button>
+          </div>
+          
+          {/* Author Info */}
+          <div className="text-sm text-gray-500 italic">
+            Αναρτήθηκε από <Link href="#" className="text-teal-600 hover:text-teal-700 font-medium">Katerina Mistrioti</Link> στις 2:57 μ.μ.
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <div className="px-6 md:px-10 py-6 bg-gray-50 border-t border-gray-100">
+        <div className="flex justify-between items-center text-sm">
+          <Link 
+            href="#" 
+            className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Νεότερη ανάρτηση
+          </Link>
+          <Link 
+            href="/" 
+            className="flex items-center gap-2 text-gray-600 hover:text-teal-600 transition-colors"
+          >
+            <Home className="w-4 h-4" />
+            Αρχική σελίδα
+          </Link>
+          <Link 
+            href="#" 
+            className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium transition-colors"
+          >
+            Παλαιότερες αναρτήσεις
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+    </motion.article>
   );
 };
 
