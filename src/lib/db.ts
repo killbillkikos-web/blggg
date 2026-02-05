@@ -156,13 +156,23 @@ export async function uploadImage(
     }
 
     // Production on Netlify
-    const store = getStore(IMAGES_STORE);
-    const buffer = Buffer.from(data, "base64");
-    await store.set(key, buffer, { metadata: { contentType } });
-    return `/api/images/${key}`;
+    try {
+      const store = getStore(IMAGES_STORE);
+      const buffer = Buffer.from(data, "base64");
+      await store.set(key, buffer, { metadata: { contentType } });
+      return `/api/images/${key}`;
+    } catch (storeError) {
+      const storeErrorMsg = storeError instanceof Error ? storeError.message : String(storeError);
+      console.error("Netlify Blobs store error:", storeErrorMsg);
+      console.error("Store error details:", storeError);
+      throw new Error(`Netlify Blobs store failed: ${storeErrorMsg}`);
+    }
   } catch (error) {
-    console.error("Error uploading image:", error);
-    throw error;
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error("Error uploading image:", errorMessage);
+    console.error("Full error:", error);
+    console.error("isNetlify:", isNetlify);
+    throw new Error(`Image upload failed: ${errorMessage}`);
   }
 }
 
