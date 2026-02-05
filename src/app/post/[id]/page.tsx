@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Header from "@/components/sections/header";
 import Sidebar from "@/components/sections/sidebar";
 import Credits from "@/components/sections/credits";
@@ -8,23 +8,40 @@ import content from "@/lib/content.json";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Calendar, User, Tag, ArrowLeft, Share2, Twitter, Facebook, Linkedin, ChevronUp } from "lucide-react";
+import { Calendar, User, Tag, ArrowLeft, Twitter, Facebook, Linkedin, ChevronUp, Clock } from "lucide-react";
 
 export default function PostPage({ params }: { params: Promise<{ id: string }> }) {
   const [id, setId] = useState<string | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
 
   useEffect(() => {
     params.then(p => setId(p.id));
   }, [params]);
 
+  const handleScroll = useCallback(() => {
+    setShowScrollTop(window.scrollY > 500);
+    
+    // Calculate reading progress
+    const article = document.querySelector('article');
+    if (article) {
+      const articleTop = article.offsetTop;
+      const articleHeight = article.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+      
+      const progress = Math.min(
+        100,
+        Math.max(0, ((scrollY - articleTop + windowHeight * 0.3) / articleHeight) * 100)
+      );
+      setReadingProgress(progress);
+    }
+  }, []);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 500);
-    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   if (!id) {
     return (
@@ -56,12 +73,28 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
   const imgMatch = post.content.match(/<img.*?src="(.*?)"/);
   const heroImage = imgMatch ? imgMatch[1] : null;
 
+  // Calculate reading time (average 200 words per minute for Greek text)
+  const calculateReadingTime = (htmlContent: string) => {
+    const textContent = htmlContent.replace(/<[^>]*>/g, '');
+    const wordCount = textContent.split(/\s+/).filter(word => word.length > 0).length;
+    const readingTime = Math.ceil(wordCount / 200);
+    return readingTime;
+  };
+
+  const readingTime = calculateReadingTime(post.content);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50 to-stone-100/50">
+      {/* Reading Progress Bar */}
+      <div 
+        className="reading-progress"
+        style={{ width: `${readingProgress}%` }}
+      />
+      
       <Header />
       
       {/* Article Hero */}
@@ -76,7 +109,7 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
       )}
       
       {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col lg:flex-row gap-10">
           {/* Main Article */}
           <motion.article 
@@ -88,25 +121,30 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
             {/* Back Link */}
             <Link 
               href="/"
-              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-teal-600 transition-colors mb-6"
+              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 transition-colors mb-6 group"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               Πίσω στην αρχική
             </Link>
 
             {/* Article Card */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden article-card">
               {/* Article Header */}
               <div className="p-6 md:p-10 pb-0">
                 {/* Meta Info */}
                 <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-500">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-teal-600" />
+                    <Calendar className="w-4 h-4 text-emerald-600" />
                     <time dateTime={post.published}>{formattedDate}</time>
                   </div>
                   <div className="flex items-center gap-2">
-                    <User className="w-4 h-4 text-teal-600" />
+                    <User className="w-4 h-4 text-emerald-600" />
                     <span>{post.author}</span>
+                  </div>
+                  {/* Reading Time */}
+                  <div className="reading-time">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>{readingTime} λεπτά ανάγνωσης</span>
                   </div>
                 </div>
 
@@ -121,7 +159,7 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
                     <Link
                       key={label}
                       href={`/search/label/${label}`}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-teal-50 text-teal-700 text-xs font-medium rounded-full hover:bg-teal-100 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-medium rounded-full hover:bg-emerald-100 transition-colors"
                     >
                       <Tag className="w-3 h-3" />
                       {label}
@@ -130,12 +168,12 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
                 </div>
 
                 {/* Divider */}
-                <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+                <div className="h-px bg-gradient-to-r from-transparent via-stone-200 to-transparent" />
               </div>
 
               {/* Article Content */}
               <div 
-                className="prose prose-lg max-w-none p-6 md:p-10 pt-8"
+                className="prose prose-lg p-6 md:p-10 pt-8"
                 dangerouslySetInnerHTML={{ __html: post.content }}
                 style={{
                   fontFamily: "'Source Serif 4', Georgia, serif",
@@ -144,7 +182,7 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
 
               {/* Article Footer */}
               <div className="p-6 md:p-10 pt-0">
-                <div className="border-t border-gray-100 pt-8">
+                <div className="border-t border-stone-100 pt-8">
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                     {/* Share Buttons */}
                     <div className="flex items-center gap-4">
@@ -152,25 +190,28 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
                       <div className="flex items-center gap-2">
                         <motion.button 
                           onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`, '_blank')}
-                          className="p-3 bg-gray-50 text-gray-500 hover:bg-[#1DA1F2] hover:text-white rounded-full transition-all"
+                          className="w-11 h-11 flex items-center justify-center bg-stone-50 text-gray-500 hover:bg-[#1DA1F2] hover:text-white rounded-full transition-all duration-300"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
+                          aria-label="Μοιραστείτε στο Twitter"
                         >
                           <Twitter className="w-4 h-4" />
                         </motion.button>
                         <motion.button 
                           onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
-                          className="p-3 bg-gray-50 text-gray-500 hover:bg-[#4267B2] hover:text-white rounded-full transition-all"
+                          className="w-11 h-11 flex items-center justify-center bg-stone-50 text-gray-500 hover:bg-[#4267B2] hover:text-white rounded-full transition-all duration-300"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
+                          aria-label="Μοιραστείτε στο Facebook"
                         >
                           <Facebook className="w-4 h-4" />
                         </motion.button>
                         <motion.button 
                           onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
-                          className="p-3 bg-gray-50 text-gray-500 hover:bg-[#0077B5] hover:text-white rounded-full transition-all"
+                          className="w-11 h-11 flex items-center justify-center bg-stone-50 text-gray-500 hover:bg-[#0077B5] hover:text-white rounded-full transition-all duration-300"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
+                          aria-label="Μοιραστείτε στο LinkedIn"
                         >
                           <Linkedin className="w-4 h-4" />
                         </motion.button>
@@ -197,11 +238,12 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 p-4 bg-teal-600 text-white rounded-full shadow-lg transition-all duration-300 z-50 ${
+        className={`fixed bottom-8 right-8 p-4 bg-emerald-600 text-white rounded-full shadow-lg transition-all duration-300 z-50 ${
           showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
+        aria-label="Πίσω στην κορυφή"
       >
         <ChevronUp className="w-5 h-5" />
       </motion.button>

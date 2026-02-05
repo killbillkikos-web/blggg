@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Heart, ExternalLink, ArrowUp } from 'lucide-react';
+import { Heart, ArrowUp } from 'lucide-react';
 
 /**
  * Credits Component
@@ -97,22 +97,8 @@ const Credits: React.FC = () => {
           {/* Divider */}
           <div className="border-t border-gray-800" />
 
-          {/* Lower Footer - Credits */}
-          <div className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-gray-500 text-sm text-center md:text-left">
-              Θέμα Φανταστικό Α.Ε.. Από το{' '}
-              <a 
-                href="https://www.blogger.com" 
-                className="text-teal-500 hover:text-teal-400 transition-colors inline-flex items-center gap-1"
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                Blogger
-                <ExternalLink className="w-3 h-3" />
-              </a>
-              .
-            </p>
-
+          {/* Lower Footer */}
+          <div className="py-6 flex items-center justify-end">
             {/* Back to Top Button */}
             <motion.button
               onClick={scrollToTop}

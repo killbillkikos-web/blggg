@@ -222,18 +222,21 @@ const Sidebar = () => {
               <div key={year} className="rounded-xl overflow-hidden">
                 <button
                   onClick={() => toggleYear(year)}
-                  className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors rounded-xl"
+                  className="w-full flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-stone-100 transition-colors rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-inset"
+                  aria-expanded={isYearExpanded}
+                  aria-controls={`archive-year-${year}`}
                 >
                   <div className="flex items-center gap-2">
                     <motion.div
                       animate={{ rotate: isYearExpanded ? 90 : 0 }}
                       transition={{ duration: 0.2 }}
+                      aria-hidden="true"
                     >
                       <ChevronRight className="w-4 h-4 text-gray-400" />
                     </motion.div>
                     <span className="font-semibold text-gray-700">{year}</span>
                   </div>
-                  <span className="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded-full">
+                  <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">
                     {yearPostCount}
                   </span>
                 </button>
@@ -241,6 +244,7 @@ const Sidebar = () => {
                 <AnimatePresence>
                   {isYearExpanded && (
                     <motion.div
+                      id={`archive-year-${year}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -256,12 +260,15 @@ const Sidebar = () => {
                             <div key={month}>
                               <button
                                 onClick={() => toggleMonth(monthKey)}
-                                className="w-full flex items-center justify-between px-3 py-2 hover:bg-gray-50 rounded-lg transition-colors"
+                                className="w-full flex items-center justify-between px-3 py-2 hover:bg-stone-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-inset"
+                                aria-expanded={isMonthExpanded}
+                                aria-controls={`archive-month-${monthKey}`}
                               >
                                 <div className="flex items-center gap-2">
                                   <motion.div
                                     animate={{ rotate: isMonthExpanded ? 90 : 0 }}
                                     transition={{ duration: 0.2 }}
+                                    aria-hidden="true"
                                   >
                                     <ChevronRight className="w-3 h-3 text-gray-400" />
                                   </motion.div>
@@ -275,6 +282,7 @@ const Sidebar = () => {
                               <AnimatePresence>
                                 {isMonthExpanded && (
                                   <motion.div
+                                    id={`archive-month-${monthKey}`}
                                     initial={{ height: 0, opacity: 0 }}
                                     animate={{ height: 'auto', opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}
@@ -284,7 +292,7 @@ const Sidebar = () => {
                                       <Link 
                                         key={post.id}
                                         href={`/post/${post.id.split('-').pop()}`} 
-                                        className="block py-2 px-3 text-sm text-teal-600 hover:text-teal-700 hover:bg-teal-50 rounded-lg transition-colors line-clamp-1"
+                                        className="block py-2 px-3 text-sm text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors line-clamp-1"
                                       >
                                         {post.title}
                                       </Link>
@@ -320,7 +328,38 @@ const Sidebar = () => {
           {popularPosts.map((post, index) => {
             const imgMatch = post.content.match(/<img.*?src="(.*?)"/);
             const imgSrc = imgMatch ? imgMatch[1] : null;
-            const textContent = post.content.replace(/<[^>]*>/g, '');
+            
+            // Decode HTML entities
+            const decodeHtmlEntities = (text: string) => {
+              let decoded = text;
+              
+              // First pass: decode double-encoded entities (e.g., &amp;nbsp; -> &nbsp;)
+              decoded = decoded.replace(/&amp;/gi, '&');
+              
+              const entities: { [key: string]: string } = {
+                '&nbsp;': ' ',
+                '&amp;': '&',
+                '&lt;': '<',
+                '&gt;': '>',
+                '&quot;': '"',
+                '&#39;': "'",
+                '&apos;': "'",
+                '&ndash;': '–',
+                '&mdash;': '—',
+              };
+              Object.keys(entities).forEach(entity => {
+                decoded = decoded.replace(new RegExp(entity, 'gi'), entities[entity]);
+              });
+              
+              // Handle numeric HTML entities
+              decoded = decoded.replace(/&#(\d+);/g, (match, num) => {
+                return String.fromCharCode(parseInt(num, 10));
+              });
+              
+              return decoded.replace(/\s+/g, ' ').trim();
+            };
+            
+            const textContent = decodeHtmlEntities(post.content.replace(/<[^>]*>/g, ''));
             
             return (
               <motion.article 

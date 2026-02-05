@@ -31,8 +31,16 @@ const Header = () => {
 
   return (
     <>
+      {/* Skip to Content Link - Accessibility */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-emerald-600 focus:text-white focus:rounded-lg focus:outline-none"
+      >
+        Μετάβαση στο περιεχόμενο
+      </a>
+
       {/* Hero Section */}
-      <header className="relative w-full">
+      <header className="relative w-full" role="banner">
         {/* Stunning Hero Banner */}
         <div className="relative h-[55vh] min-h-[400px] max-h-[600px] overflow-hidden">
           {/* Hero Image from Unsplash - High quality wellness/nutrition imagery */}
@@ -147,7 +155,7 @@ const Header = () => {
               {/* Logo for Scrolled State */}
               <Link 
                 href="/" 
-                className={`font-display text-xl font-semibold text-teal-700 transition-all duration-300 ${
+                className={`font-display text-xl font-semibold text-emerald-700 transition-all duration-300 ${
                   isScrolled ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0'
                 }`}
               >
@@ -173,14 +181,14 @@ const Header = () => {
                           href={item.href} 
                           className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                             isActive 
-                              ? 'text-teal-700 bg-teal-50' 
-                              : 'text-gray-600 hover:text-teal-700 hover:bg-gray-50'
+                              ? 'text-emerald-700 bg-emerald-50' 
+                              : 'text-gray-600 hover:text-emerald-700 hover:bg-stone-50'
                           }`}
                         >
                           {item.name}
                           {isActive && (
                             <motion.div
-                              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-teal-500"
+                              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-emerald-500"
                               layoutId="activeIndicator"
                             />
                           )}
@@ -195,9 +203,10 @@ const Header = () => {
               <div className="flex items-center gap-3">
                 <motion.button
                   onClick={() => setIsSearchOpen(true)}
-                  className="p-2 text-gray-500 hover:text-teal-600 hover:bg-gray-100 rounded-full transition-colors"
+                  className="p-2 text-gray-500 hover:text-emerald-600 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  aria-label="Άνοιγμα αναζήτησης"
                 >
                   <Search className="w-5 h-5" />
                 </motion.button>
@@ -205,7 +214,10 @@ const Header = () => {
                 {/* Mobile Menu Button */}
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="lg:hidden p-2 text-gray-500 hover:text-teal-600 hover:bg-gray-100 rounded-full transition-colors"
+                  className="lg:hidden p-2 text-gray-500 hover:text-emerald-600 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                  aria-expanded={isMobileMenuOpen}
+                  aria-controls="mobile-menu"
+                  aria-label={isMobileMenuOpen ? "Κλείσιμο μενού" : "Άνοιγμα μενού"}
                 >
                   {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </button>
@@ -217,11 +229,14 @@ const Header = () => {
           <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div
+                id="mobile-menu"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
                 className="lg:hidden border-t border-gray-100 bg-white overflow-hidden"
+                role="navigation"
+                aria-label="Κινητό μενού πλοήγησης"
               >
                 <div className="px-4 py-4 space-y-1">
                   {navItems.map((item, index) => {
@@ -241,8 +256,8 @@ const Header = () => {
                           onClick={() => setIsMobileMenuOpen(false)}
                           className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                             isActive 
-                              ? 'text-teal-700 bg-teal-50' 
-                              : 'text-gray-600 hover:text-teal-700 hover:bg-gray-50'
+                              ? 'text-emerald-700 bg-emerald-50' 
+                              : 'text-gray-600 hover:text-emerald-700 hover:bg-stone-50'
                           }`}
                         >
                           {item.name}
@@ -265,6 +280,9 @@ const Header = () => {
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-start justify-center pt-[20vh]"
               onClick={() => setIsSearchOpen(false)}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Αναζήτηση"
             >
               <motion.div
                 initial={{ opacity: 0, y: -50, scale: 0.95 }}
@@ -278,19 +296,22 @@ const Header = () => {
                   action="/search" 
                   method="GET"
                   className="flex items-center p-4 gap-4"
+                  role="search"
                 >
-                  <Search className="w-6 h-6 text-gray-400 flex-shrink-0" />
+                  <Search className="w-6 h-6 text-gray-400 flex-shrink-0" aria-hidden="true" />
                   <input
                     type="text"
                     name="q"
                     placeholder="Αναζήτηση άρθρων..."
                     className="flex-1 text-lg outline-none placeholder:text-gray-400"
                     autoFocus
+                    aria-label="Αναζήτηση άρθρων"
                   />
                   <button
                     type="button"
                     onClick={() => setIsSearchOpen(false)}
-                    className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100"
+                    className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    aria-label="Κλείσιμο αναζήτησης"
                   >
                     <X className="w-5 h-5" />
                   </button>

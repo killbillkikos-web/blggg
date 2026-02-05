@@ -41,9 +41,65 @@ const PostItem = ({ post, index }: { post: Post; index: number }) => {
   const imgMatch = post.content.match(/<img.*?src="(.*?)"/);
   const thumbnailSrc = imgMatch ? imgMatch[1] : null;
 
-  // Extract clean text excerpt
+  // Extract clean text excerpt - decode HTML entities properly
+  const decodeHtmlEntities = (text: string) => {
+    let decoded = text;
+    
+    // First pass: decode double-encoded entities (e.g., &amp;nbsp; -> &nbsp;)
+    decoded = decoded.replace(/&amp;/gi, '&');
+    
+    // Second pass: decode all HTML entities
+    const entities: { [key: string]: string } = {
+      '&nbsp;': ' ',
+      '&amp;': '&',
+      '&lt;': '<',
+      '&gt;': '>',
+      '&quot;': '"',
+      '&#39;': "'",
+      '&apos;': "'",
+      '&ndash;': '–',
+      '&mdash;': '—',
+      '&hellip;': '…',
+      '&laquo;': '«',
+      '&raquo;': '»',
+      '&copy;': '©',
+      '&reg;': '®',
+      '&trade;': '™',
+      '&euro;': '€',
+      '&pound;': '£',
+      '&yen;': '¥',
+      '&cent;': '¢',
+      '&deg;': '°',
+      '&plusmn;': '±',
+      '&times;': '×',
+      '&divide;': '÷',
+      '&frac12;': '½',
+      '&frac14;': '¼',
+      '&frac34;': '¾',
+    };
+    
+    Object.keys(entities).forEach(entity => {
+      decoded = decoded.replace(new RegExp(entity, 'gi'), entities[entity]);
+    });
+    
+    // Handle numeric HTML entities (e.g., &#160; for nbsp)
+    decoded = decoded.replace(/&#(\d+);/g, (match, num) => {
+      return String.fromCharCode(parseInt(num, 10));
+    });
+    
+    // Handle hex HTML entities (e.g., &#x00A0;)
+    decoded = decoded.replace(/&#x([0-9a-f]+);/gi, (match, hex) => {
+      return String.fromCharCode(parseInt(hex, 16));
+    });
+    
+    // Clean up multiple spaces
+    decoded = decoded.replace(/\s+/g, ' ').trim();
+    return decoded;
+  };
+  
   const textContent = post.content.replace(/<[^>]*>/g, '');
-  const excerpt = textContent.substring(0, 200).trim() + '...';
+  const cleanText = decodeHtmlEntities(textContent);
+  const excerpt = cleanText.substring(0, 200).trim() + '...';
 
   return (
     <motion.article
@@ -56,18 +112,16 @@ const PostItem = ({ post, index }: { post: Post; index: number }) => {
       }}
       className="group"
     >
-      <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100">
+      <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-stone-100 card-lift">
         {/* Card Image */}
         {thumbnailSrc && (
           <Link 
             href={`/post/${post.id.split('-').pop()}`}
-            className="block relative overflow-hidden aspect-[16/9]"
+            className="block relative overflow-hidden aspect-[16/9] image-hover-zoom"
           >
-            <motion.div
-              className="absolute inset-0 bg-cover bg-center"
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
               style={{ backgroundImage: `url(${thumbnailSrc})` }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.6 }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </Link>
@@ -91,7 +145,7 @@ const PostItem = ({ post, index }: { post: Post; index: number }) => {
           <h2 className="mb-4">
             <Link 
               href={`/post/${post.id.split('-').pop()}`}
-              className="text-2xl md:text-3xl font-display font-semibold text-gray-900 hover:text-teal-700 transition-colors duration-300 leading-tight"
+              className="text-2xl md:text-3xl font-display font-semibold text-gray-900 hover:text-emerald-700 transition-colors duration-300 leading-tight link-hover-underline"
             >
               {post.title}
             </Link>
@@ -108,7 +162,7 @@ const PostItem = ({ post, index }: { post: Post; index: number }) => {
               <Link
                 key={label}
                 href={`/search/label/${label}`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-teal-50 text-teal-700 text-xs font-medium rounded-full hover:bg-teal-100 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-medium rounded-full hover:bg-emerald-100 transition-colors"
               >
                 <Tag className="w-3 h-3" />
                 {label}
@@ -117,25 +171,25 @@ const PostItem = ({ post, index }: { post: Post; index: number }) => {
           </div>
 
           {/* Footer Actions */}
-          <div className="flex items-center justify-between pt-6 border-t border-gray-100">
+          <div className="flex items-center justify-between pt-6 border-t border-stone-100">
             {/* Social Share */}
             <div className="flex items-center gap-2">
               <span className="text-xs text-gray-400 mr-2">Share:</span>
               <motion.button 
                 onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.origin + '/post/' + post.id.split('-').pop())}&text=${encodeURIComponent(post.title)}`, '_blank')}
-                className="p-2 text-gray-400 hover:text-[#1DA1F2] hover:bg-blue-50 rounded-full transition-all"
+                className="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-[#1DA1F2] hover:bg-blue-50 rounded-full transition-all"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                title="Share to Twitter"
+                aria-label="Μοιραστείτε στο Twitter"
               >
                 <Twitter className="w-4 h-4" />
               </motion.button>
               <motion.button 
                 onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin + '/post/' + post.id.split('-').pop())}`, '_blank')}
-                className="p-2 text-gray-400 hover:text-[#4267B2] hover:bg-blue-50 rounded-full transition-all"
+                className="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-[#4267B2] hover:bg-blue-50 rounded-full transition-all"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                title="Share to Facebook"
+                aria-label="Μοιραστείτε στο Facebook"
               >
                 <Facebook className="w-4 h-4" />
               </motion.button>
@@ -144,7 +198,7 @@ const PostItem = ({ post, index }: { post: Post; index: number }) => {
             {/* Read More */}
             <Link 
               href={`/post/${post.id.split('-').pop()}`}
-              className="group/btn inline-flex items-center gap-2 px-5 py-2.5 bg-teal-600 text-white text-sm font-medium rounded-full hover:bg-teal-700 transition-all duration-300 shadow-md hover:shadow-lg"
+              className="group/btn inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 text-white text-sm font-medium rounded-full hover:bg-emerald-700 transition-all duration-300 shadow-md hover:shadow-lg btn-press"
             >
               Διαβάστε περισσότερα
               <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
