@@ -79,17 +79,6 @@ const Header = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              {/* Subtle Pre-title */}
-              <motion.p 
-                className="text-white/80 font-medium tracking-[0.3em] uppercase text-xs md:text-sm mb-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-              >
-                Clinical Nutrition & Holistic Health
-              </motion.p>
-              
-              {/* Main Title */}
               <motion.h1 
                 className="text-5xl md:text-7xl lg:text-8xl font-display font-semibold text-white tracking-tight"
                 style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
@@ -97,10 +86,9 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
-                Well Being Energy & Vigor
+                Well Being
               </motion.h1>
 
-              {/* Elegant Divider */}
               <motion.div 
                 className="flex items-center justify-center gap-4 my-6"
                 initial={{ opacity: 0, scaleX: 0 }}
@@ -112,14 +100,13 @@ const Header = () => {
                 <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-white/60" />
               </motion.div>
 
-              {/* Tagline */}
               <motion.p 
                 className="text-white/90 text-lg md:text-xl font-serif max-w-2xl mx-auto leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
-                Ολιστική Προσέγγιση στη Διατροφή & Ευεξία
+                Energy & Vigor
               </motion.p>
             </motion.div>
 
