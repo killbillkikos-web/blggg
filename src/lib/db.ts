@@ -21,7 +21,13 @@ const ARTICLES_KEY = "all-articles";
 const IMAGES_STORE = "images";
 
 // Check if running on Netlify (production)
-const isNetlify = process.env.NETLIFY === "true" || process.env.CONTEXT !== undefined;
+// Use multiple checks for reliability
+const isNetlify = 
+  process.env.NETLIFY === "true" || 
+  process.env.CONTEXT !== undefined ||
+  process.env.DEPLOY_ID !== undefined ||
+  process.env.SITE_ID !== undefined ||
+  process.env.NETLIFY_BUILD_BASE !== undefined;
 
 // Local JSON file storage
 const dataDir = path.join(process.cwd(), ".data");
@@ -41,7 +47,9 @@ async function ensureDataDirs() {
 // Get all articles
 export async function getArticles(): Promise<Article[]> {
   try {
-    if (!isNetlify) {
+    const inNetlifyFunctionsTemp = process.cwd().includes("/var/task/");
+    
+    if (!isNetlify && !inNetlifyFunctionsTemp) {
       // Local development: use JSON file storage
       await ensureDataDirs();
       try {
@@ -53,7 +61,7 @@ export async function getArticles(): Promise<Article[]> {
       }
     }
 
-    // Production on Netlify
+    // Production on Netlify - always use Blobs
     const store = getStore(ARTICLES_STORE);
     const data = await store.get(ARTICLES_KEY, { type: "json" });
     return (data as Article[]) || [];
@@ -72,14 +80,16 @@ export async function getArticleById(id: string): Promise<Article | null> {
 // Save all articles
 export async function saveArticles(articles: Article[]): Promise<void> {
   try {
-    if (!isNetlify) {
+    const inNetlifyFunctionsTemp = process.cwd().includes("/var/task/");
+    
+    if (!isNetlify && !inNetlifyFunctionsTemp) {
       // Local development: save to JSON file
       await ensureDataDirs();
       await fs.writeFile(articlesFile, JSON.stringify(articles, null, 2), "utf-8");
       return;
     }
 
-    // Production on Netlify
+    // Production on Netlify - always use Blobs
     const store = getStore(ARTICLES_STORE);
     await store.setJSON(ARTICLES_KEY, articles);
   } catch (error) {
@@ -147,7 +157,10 @@ export async function uploadImage(
   const key = `${imageId}.${extension}`;
 
   try {
-    if (!isNetlify) {
+    // IMPORTANT: /var/task/ is Netlify Functions temp directory - never use for persistence
+    const inNetlifyFunctionsTemp = process.cwd().includes("/var/task/");
+    
+    if (!isNetlify && !inNetlifyFunctionsTemp) {
       // Local development: save to file
       await ensureDataDirs();
       const buffer = Buffer.from(data, "base64");
@@ -155,7 +168,7 @@ export async function uploadImage(
       return `/api/images/${key}`;
     }
 
-    // Production on Netlify
+    // Production on Netlify - always use Blobs
     try {
       const store = getStore(IMAGES_STORE);
       const buffer = Buffer.from(data, "base64");
@@ -172,6 +185,7 @@ export async function uploadImage(
     console.error("Error uploading image:", errorMessage);
     console.error("Full error:", error);
     console.error("isNetlify:", isNetlify);
+    console.error("cwd:", process.cwd());
     throw new Error(`Image upload failed: ${errorMessage}`);
   }
 }
@@ -181,7 +195,9 @@ export async function getImage(
   key: string
 ): Promise<{ data: Buffer; contentType: string } | null> {
   try {
-    if (!isNetlify) {
+    const inNetlifyFunctionsTemp = process.cwd().includes("/var/task/");
+    
+    if (!isNetlify && !inNetlifyFunctionsTemp) {
       // Local development: read from file
       await ensureDataDirs();
       try {
@@ -201,7 +217,7 @@ export async function getImage(
       }
     }
 
-    // Production on Netlify
+    // Production on Netlify - always use Blobs
     const store = getStore(IMAGES_STORE);
     const blob = await store.get(key, { type: "arrayBuffer" });
     if (!blob) return null;
