@@ -158,7 +158,7 @@ const Header = () => {
                   isScrolled ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0'
                 }`}
               >
-                Diet Web
+                Well Being
               </Link>
 
               {/* Desktop Navigation */}

@@ -1,5 +1,5 @@
 ## Project Summary
-This project is a pixel-perfect clone of the "Diet Web" blog (https://diet-web.blogspot.com/), a health-focused blog specializing in Clinical Nutrition and holistic health applications. The design captures a classic blogger aesthetic with a DNA-themed banner, grey gradient navigation tabs, and a structured three-column layout.
+This project is a pixel-perfect clone of the "Well Being" blog (https://diet-web.blogspot.com/), a health-focused blog specializing in Clinical Nutrition and holistic health applications. The design captures a classic blogger aesthetic with a DNA-themed banner, grey gradient navigation tabs, and a structured three-column layout.
 
 ## Tech Stack
 - Framework: Next.js (App Router)
@@ -18,7 +18,7 @@ This project is a pixel-perfect clone of the "Diet Web" blog (https://diet-web.b
     - `credits.tsx`: Bottom attribution and social links.
 
 ## User Preferences
-- Pixel-perfect accuracy for the "Diet Web" blog clone.
+- Pixel-perfect accuracy for the "Well Being" blog clone.
 
 ## Project Guidelines
 - Use `"use client"` for components utilizing `styled-jsx` or complex inline style tags to avoid RSC conflicts.

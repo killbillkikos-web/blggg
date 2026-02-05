@@ -5,7 +5,7 @@ import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Diet Web - Clinical Nutrition & Holistic Health",
+  title: "Well Being - Clinical Nutrition & Holistic Health",
   description: "Ολιστική Προσέγγιση στη Διατροφή & Ευεξία. Σύμβουλος Κλινικής Διατροφολογίας και Ολιστικών Εφαρμογών.",
   keywords: ["διατροφή", "υγεία", "ολιστική", "clinical nutrition", "diet coaching"],
 };
