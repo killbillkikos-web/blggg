@@ -10,14 +10,71 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Calendar, User, Tag, ArrowLeft, Twitter, Facebook, Linkedin, ChevronUp, Clock } from "lucide-react";
 
+interface Post {
+  id: string;
+  published: string;
+  title: string;
+  content: string;
+  author: string;
+  labels: string[];
+}
+
+interface Article {
+  id: string;
+  title: string;
+  content: string;
+  imageUrl: string | null;
+  published: string;
+  author: string;
+  labels: string[];
+  createdAt: string;
+}
+
+// Convert database article to Post format
+function articleToPost(article: Article): Post {
+  let contentWithImage = article.content;
+  if (article.imageUrl && !article.content.includes("<img")) {
+    contentWithImage = `<img src="${article.imageUrl}" alt="${article.title}" />${article.content}`;
+  }
+  
+  return {
+    id: article.id,
+    published: article.published,
+    title: article.title,
+    content: contentWithImage,
+    author: article.author,
+    labels: article.labels,
+  };
+}
+
 export default function PostPage({ params }: { params: Promise<{ id: string }> }) {
   const [id, setId] = useState<string | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
+  const [dbArticles, setDbArticles] = useState<Article[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     params.then(p => setId(p.id));
   }, [params]);
+
+  // Fetch database articles
+  useEffect(() => {
+    async function fetchArticles() {
+      try {
+        const response = await fetch("/api/articles");
+        const data = await response.json();
+        if (data.articles) {
+          setDbArticles(data.articles);
+        }
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchArticles();
+  }, []);
 
   const handleScroll = useCallback(() => {
     setShowScrollTop(window.scrollY > 500);
@@ -43,7 +100,7 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
-  if (!id) {
+  if (!id || isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex items-center justify-center">
         <div className="w-8 h-8 border-4 border-teal-600 border-t-transparent rounded-full animate-spin" />
@@ -51,7 +108,14 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
     );
   }
 
-  const post = content.posts.find(p => p.id.endsWith(id));
+  // First, try to find in database articles
+  const dbArticle = dbArticles.find(a => a.id === id || a.id.endsWith(id));
+  
+  // Then try legacy content.json
+  const legacyPost = content.posts.find(p => p.id.endsWith(id));
+  
+  // Use database article if found, otherwise use legacy post
+  const post: Post | undefined = dbArticle ? articleToPost(dbArticle) : legacyPost;
 
   if (!post) {
     notFound();

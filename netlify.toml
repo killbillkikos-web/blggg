@@ -4,3 +4,17 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Enable Netlify Blobs for data persistence
+[functions]
+  node_bundler = "esbuild"
+
+# Environment variable for Netlify detection
+[context.production.environment]
+  NETLIFY = "true"
+
+[context.deploy-preview.environment]
+  NETLIFY = "true"
+
+[context.branch-deploy.environment]
+  NETLIFY = "true"

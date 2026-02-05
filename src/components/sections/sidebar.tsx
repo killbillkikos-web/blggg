@@ -130,23 +130,27 @@ const Sidebar = () => {
             <Sparkles className="w-8 h-8 text-white" />
           </div>
           
-          <h2 className="text-lg font-semibold mb-1">
-            ΟΛΙΣΤΙΚΟΣ ΕΛΕΓΧΟΣ
+          <h2 className="text-lg font-semibold mb-4">
+            ΟΛΙΣΤΙΚΟΣ ΕΛΕΓΧΟΣ<br />
+            <span className="text-teal-100 font-bold">SENSITIV IMAGO</span>
           </h2>
-          <p className="text-teal-100 text-sm mb-4">
-            ΜΕ ΤΗΝ ΜΕΘΟΔΟ SENSITIV IMAGO
-          </p>
           
-          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm mb-4">
             <p className="font-semibold text-lg mb-1">Κατερίνα Μηστριώτη</p>
             <p className="text-teal-100 text-sm mb-3">
-              Σύμβουλος Κλινικής Διατροφολογίας<br />& Ολιστικών Εφαρμογών
+              BSc (Hons), MSc<br />
+              Well Being Consultant
             </p>
-            <p className="text-teal-200 text-xs leading-relaxed">
-              Εθνικό & Καποδιστριακό Πανεπιστήμιο Αθηνών<br />
-              Natural Health Science College Manchester<br />
-              Metropolitan University
+            <p className="text-teal-200 text-xs leading-relaxed mb-3">
+              Δημιουργία και Εφαρμογή Ολιστικών Προγραμμάτων Ευεξίας
             </p>
+            <div className="border-t border-white/20 pt-3">
+              <p className="text-teal-200 text-xs leading-relaxed">
+                Εθνικό & Καποδιστριακό Πανεπιστήμιο Αθηνών<br />
+                Natural Health Science College Manchester<br />
+                Metropolitan University
+              </p>
+            </div>
           </div>
           
           <div className="mt-5 space-y-2">
@@ -168,150 +172,9 @@ const Sidebar = () => {
         </div>
       </motion.section>
 
-      {/* Information Widget */}
-      <motion.section 
-        variants={itemVariants}
-        className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
-      >
-        <div className="flex items-center gap-2 mb-4">
-          <User className="w-5 h-5 text-teal-600" />
-          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
-            Πληροφορίες
-          </h2>
-        </div>
-        <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-          <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-            <Mail className="w-5 h-5 text-orange-500" />
-          </div>
-          <div>
-            <p className="text-sm font-medium text-gray-700">Katerina Mistrioti</p>
-            <a 
-              href="mailto:mistrioti@gmail.com" 
-              className="text-sm text-teal-600 hover:text-teal-700 transition-colors"
-            >
-              mistrioti@gmail.com
-            </a>
-          </div>
-        </div>
-        <a 
-          href="#" 
-          className="inline-flex items-center gap-1 mt-4 text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors"
-        >
-          Προβολή πλήρους προφίλ
-          <ExternalLink className="w-3 h-3" />
-        </a>
-      </motion.section>
+      {/* Information Widget - REMOVED */}
 
-      {/* Blog Archive List */}
-      <motion.section 
-        variants={itemVariants}
-        className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
-      >
-        <div className="flex items-center gap-2 mb-4">
-          <Calendar className="w-5 h-5 text-teal-600" />
-          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
-            Αρχειοθήκη ιστολογίου
-          </h2>
-        </div>
-        <div className="space-y-2">
-          {Object.keys(archive).sort().reverse().map(year => {
-            const isYearExpanded = expandedYears.includes(year);
-            const yearPostCount = Object.values(archive[year]).reduce((acc, val) => acc + val.length, 0);
-            
-            return (
-              <div key={year} className="rounded-xl overflow-hidden">
-                <button
-                  onClick={() => toggleYear(year)}
-                  className="w-full flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-stone-100 transition-colors rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-inset"
-                  aria-expanded={isYearExpanded}
-                  aria-controls={`archive-year-${year}`}
-                >
-                  <div className="flex items-center gap-2">
-                    <motion.div
-                      animate={{ rotate: isYearExpanded ? 90 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      aria-hidden="true"
-                    >
-                      <ChevronRight className="w-4 h-4 text-gray-400" />
-                    </motion.div>
-                    <span className="font-semibold text-gray-700">{year}</span>
-                  </div>
-                  <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">
-                    {yearPostCount}
-                  </span>
-                </button>
-                
-                <AnimatePresence>
-                  {isYearExpanded && (
-                    <motion.div
-                      id={`archive-year-${year}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pl-6 py-2 space-y-1">
-                        {Object.keys(archive[year]).sort().reverse().map(month => {
-                          const monthKey = `${year}-${month}`;
-                          const isMonthExpanded = expandedMonths.includes(monthKey);
-                          
-                          return (
-                            <div key={month}>
-                              <button
-                                onClick={() => toggleMonth(monthKey)}
-                                className="w-full flex items-center justify-between px-3 py-2 hover:bg-stone-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-inset"
-                                aria-expanded={isMonthExpanded}
-                                aria-controls={`archive-month-${monthKey}`}
-                              >
-                                <div className="flex items-center gap-2">
-                                  <motion.div
-                                    animate={{ rotate: isMonthExpanded ? 90 : 0 }}
-                                    transition={{ duration: 0.2 }}
-                                    aria-hidden="true"
-                                  >
-                                    <ChevronRight className="w-3 h-3 text-gray-400" />
-                                  </motion.div>
-                                  <span className="text-sm text-gray-600">{month}</span>
-                                </div>
-                                <span className="text-xs text-gray-400">
-                                  ({archive[year][month].length})
-                                </span>
-                              </button>
-                              
-                              <AnimatePresence>
-                                {isMonthExpanded && (
-                                  <motion.div
-                                    id={`archive-month-${monthKey}`}
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: 'auto', opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    className="pl-6 space-y-1 overflow-hidden"
-                                  >
-                                    {archive[year][month].map((post: any) => (
-                                      <Link 
-                                        key={post.id}
-                                        href={`/post/${post.id.split('-').pop()}`} 
-                                        className="block py-2 px-3 text-sm text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors line-clamp-1"
-                                      >
-                                        {post.title}
-                                      </Link>
-                                    ))}
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-      </motion.section>
+      {/* Blog Archive List - REMOVED */}
 
       {/* Popular Posts */}
       <motion.section 

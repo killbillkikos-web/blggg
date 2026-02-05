@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Heart, ArrowUp } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 /**
  * Credits Component
@@ -11,15 +11,14 @@ import { Heart, ArrowUp } from 'lucide-react';
  */
 
 const Credits: React.FC = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const navItems = [
     { name: 'Αρχική σελίδα', href: '/' },
-    { name: 'SENSITIV IMAGO', href: '/p/sensitiv-imago' },
-    { name: 'Clinical Nutrition', href: '/search/label/Clinical Nutrition' },
-    { name: 'Diet Coaching', href: '/search/label/Diet Coaching' },
+    { name: 'Articles', href: '/category/articles' },
+    { name: 'Healthy Life Style', href: '/category/healthy-life-style' },
+    { name: 'Συνταγές Δύναμης', href: '/category/syntagés-dýnamis' },
+    { name: 'Ολιστική Εφαρμογή', href: '/category/olistikí-efarmoghí' },
+    { name: 'Sensitiv Imago', href: '/category/sensitiv-imago' },
   ];
 
   return (
@@ -98,17 +97,19 @@ const Credits: React.FC = () => {
           <div className="border-t border-gray-800" />
 
           {/* Lower Footer */}
-          <div className="py-6 flex items-center justify-end">
-            {/* Back to Top Button */}
-            <motion.button
-              onClick={scrollToTop}
-              className="group flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-teal-600 rounded-full text-sm text-gray-400 hover:text-white transition-all duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span>Πίσω στην κορυφή</span>
-              <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
-            </motion.button>
+          <div className="py-6 flex items-center justify-center">
+            {/* Powered By Attribution */}
+            <p className="text-xs text-gray-500">
+              Powered by{' '}
+              <a 
+                href="https://devtaskhub.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-teal-400 hover:text-teal-300 transition-colors font-medium"
+              >
+                DevTaskHub.com
+              </a>
+            </p>
           </div>
         </div>
       </div>

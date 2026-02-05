@@ -13,12 +13,11 @@ const Header = () => {
 
   const navItems = [
     { name: 'Αρχική σελίδα', href: '/' },
-    { name: 'SENSITIV IMAGO', href: '/p/sensitiv-imago' },
-    { name: 'Clinical Nutrition', href: '/search/label/Clinical Nutrition' },
-    { name: 'Diet Coaching', href: '/search/label/Diet Coaching' },
-    { name: 'Healthy Life Style', href: '/search/label/Healthy Life Style' },
-    { name: 'Συνταγές Δύναμης', href: '/search/label/Συνταγές Δύναμης' },
-    { name: 'Ολιστική Εφαρμογή', href: '/search/label/Ολιστική Εφαρμογή' },
+    { name: 'Articles', href: '/category/articles' },
+    { name: 'Healthy Life Style', href: '/category/healthy-life-style' },
+    { name: 'Συνταγές Δύναμης', href: '/category/syntagés-dýnamis' },
+    { name: 'Ολιστική Εφαρμογή', href: '/category/olistikí-efarmoghí' },
+    { name: 'Sensitiv Imago', href: '/category/sensitiv-imago' },
   ];
 
   useEffect(() => {
@@ -43,11 +42,11 @@ const Header = () => {
       <header className="relative w-full" role="banner">
         {/* Stunning Hero Banner */}
         <div className="relative h-[55vh] min-h-[400px] max-h-[600px] overflow-hidden">
-          {/* Hero Image from Unsplash - High quality wellness/nutrition imagery */}
+          {/* Hero Image - Local public image */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop')`,
+              backgroundImage: `url('/hero_section.png')`,
             }}
           />
           
@@ -98,7 +97,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
-                Diet Web
+                Well Being Energy & Vigor
               </motion.h1>
 
               {/* Elegant Divider */}

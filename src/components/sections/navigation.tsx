@@ -4,13 +4,12 @@ import React from 'react';
 const Navigation = () => {
   // Navigation tabs data from content and HTML structure
   const tabs = [
-    { label: "Αρχική σελίδα", href: "https://diet-web.blogspot.com/", active: true },
-    { label: "SENSITIV IMAGO", href: "https://diet-web.blogspot.com/p/sensitiv-imago.html", active: false },
-    { label: "Clinical Nutrition", href: "http://diet-web.blogspot.gr/search/label/%20Clinical%20Nutrition", active: false },
-    { label: "Diet Coaching", href: "http://diet-web.blogspot.gr/search/label/%20Diet%20Coaching", active: false },
-    { label: "Healthy Life Style", href: "http://diet-web.blogspot.gr/search/label/%20Healthy%20Life%20Style", active: false },
-    { label: "Συνταγές Δύναμης", href: "http://diet-web.blogspot.gr/search/label/%20%CE%A3%CF%85%CE%BD%CF%84%CE%B1%CE%B3%CE%AD%CF%82%20%CE%94%CF%8D%CE%BD%CE%B1%CE%BC%CE%B7%CF%82", active: false },
-    { label: "Ολιστική Εφαρμογή", href: "http://diet-web.blogspot.gr/search/label/%20%CE%9F%CE%BB%CE%B9%CF%83%CF%84%CE%B9%CE%BA%CE%AE%20%CE%95%CF%86%CE%B1%CF%81%CE%BC%CE%BF%CE%B3%CE%AE", active: false },
+    { label: "Αρχική σελίδα", href: "/", active: true },
+    { label: "Articles", href: "/category/articles", active: false },
+    { label: "Healthy Life Style", href: "/category/healthy-life-style", active: false },
+    { label: "Συνταγές Δύναμης", href: "/category/syntagés-dýnamis", active: false },
+    { label: "Ολιστική Εφαρμογή", href: "/category/olistikí-efarmoghí", active: false },
+    { label: "Sensitiv Imago", href: "/p/sensitiv-imago", active: false },
   ];
 
   return (

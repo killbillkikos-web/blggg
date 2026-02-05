@@ -3,14 +3,21 @@ import Sidebar from "@/components/sections/sidebar";
 import Credits from "@/components/sections/credits";
 import content from "@/lib/content.json";
 import { notFound } from "next/navigation";
+import SensitivImagoClient from "@/components/SensitivImagoClient";
 
 export default async function StaticPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  // Find page by title or slug-like comparison
-  const page = content.pages.find(p => 
-    p.title.toLowerCase().replace(/\s+/g, '-') === slug ||
-    slug === 'sensitiv-imago' && p.title === 'SENSITIV IMAGO'
-  );
+  
+  // Find page in pages array - prioritize exact title match or slug match
+  let page = (content as any).pages?.find((p: any) => {
+    const pageSlug = p.title.toLowerCase().replace(/\s+/g, '-');
+    return pageSlug === slug || p.title.toLowerCase() === slug.toLowerCase().replace(/-/g, ' ');
+  });
+
+  // Fallback: specific check for sensitiv-imago
+  if (!page && slug === 'sensitiv-imago') {
+    page = (content as any).pages?.find((p: any) => p.title === 'SENSITIV IMAGO');
+  }
 
   if (!page) {
     notFound();
@@ -33,6 +40,11 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
               />
             </article>
           </div>
+
+          {/* Show related articles for Sensitiv Imago page */}
+          {slug === 'sensitiv-imago' && (
+            <SensitivImagoClient />
+          )}
         </div>
         
         <Sidebar />
