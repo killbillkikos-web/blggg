@@ -40,14 +40,9 @@ const Credits: React.FC = () => {
                 </h3>
               </Link>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Ολιστική Προσέγγιση στη Διατροφή & Ευεξία. 
-                Clinical Nutrition & Holistic Health Applications.
+                Well Being Δημιουργία και Εφαρμογή ολιστικών προγραμμάτων ευεξίας.
               </p>
-              <div className="flex items-center gap-1 text-sm text-gray-500">
-                <span>Made with</span>
-                <Heart className="w-4 h-4 text-rose-500 fill-rose-500" />
-                <span>in Greece</span>
-              </div>
+
             </div>
 
             {/* Quick Links */}
@@ -76,18 +71,12 @@ const Credits: React.FC = () => {
               </h4>
               <div className="space-y-3 text-sm">
                 <p className="text-gray-300 font-medium">Κατερίνα Μηστριώτη</p>
-                <p className="text-gray-400">Σύμβουλος Κλινικής Διατροφολογίας</p>
+                <p className="text-gray-400">Well Being Consultant</p>
                 <a 
                   href="tel:6975301223" 
                   className="block text-teal-400 hover:text-teal-300 transition-colors"
                 >
                   6975 30 1223
-                </a>
-                <a 
-                  href="mailto:k.mistrioti@yahoo.gr" 
-                  className="block text-teal-400 hover:text-teal-300 transition-colors"
-                >
-                  k.mistrioti@yahoo.gr
                 </a>
               </div>
             </div>

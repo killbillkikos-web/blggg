@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Calendar, User, Tag, ArrowRight, Share2, Twitter, Facebook } from 'lucide-react';
+import { User, Tag, ArrowRight, Share2, Twitter, Facebook } from 'lucide-react';
 
 interface Post {
   id: string;
@@ -131,10 +131,6 @@ const PostItem = ({ post, index }: { post: Post; index: number }) => {
         <div className="p-6 md:p-8">
           {/* Meta Info */}
           <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-gray-500">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-              <time dateTime={post.published}>{formattedDate}</time>
-            </div>
             <div className="flex items-center gap-2">
               <User className="w-4 h-4" />
               <span>{post.author}</span>

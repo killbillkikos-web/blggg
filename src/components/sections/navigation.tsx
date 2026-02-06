@@ -34,8 +34,8 @@ const Navigation = () => {
               >
                 <ul 
                   className="flex flex-wrap list-none m-0 p-0 border-t border-[#DDDDDD]"
-                  style={{
-                    backgroundImage: 'url("https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/tabs_gradient_light-20.png")',
+                    style={{
+                    backgroundImage: 'url("https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-well-being-blogspot-com/assets/images/tabs_gradient_light-20.png")',
                     backgroundRepeat: 'repeat-x',
                     backgroundPosition: 'left bottom',
                     backgroundColor: '#F9F9F9'

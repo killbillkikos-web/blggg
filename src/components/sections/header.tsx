@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Search, ChevronDown } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 
 const Header = () => {
   const pathname = usePathname();
@@ -73,55 +73,34 @@ const Header = () => {
           />
 
           {/* Hero Content */}
-          <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <motion.h1 
-                className="text-5xl md:text-7xl lg:text-8xl font-display font-semibold text-white tracking-tight"
-                style={{ textShadow: '0 4px 30px rgba(0,0,0,0.3)' }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-              >
-                Well Being
-              </motion.h1>
-
-              <motion.div 
-                className="flex items-center justify-center gap-4 my-6"
-                initial={{ opacity: 0, scaleX: 0 }}
-                animate={{ opacity: 1, scaleX: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-              >
-                <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-white/60" />
-                <div className="w-2 h-2 rounded-full bg-teal-400" />
-                <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-white/60" />
-              </motion.div>
-
-              <motion.p 
-                className="text-white/90 text-lg md:text-xl font-serif max-w-2xl mx-auto leading-relaxed"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-              >
-                Energy & Vigor
-              </motion.p>
-            </motion.div>
-
-            {/* Scroll Indicator */}
-            <motion.div 
-              className="absolute bottom-8 left-1/2 -translate-x-1/2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, y: [0, 8, 0] }}
-              transition={{ 
-                opacity: { delay: 1.2, duration: 0.5 },
-                y: { delay: 1.5, duration: 2, repeat: Infinity, ease: "easeInOut" }
+          <div className="relative z-10 h-full px-4">
+            {/* Top-left title - rotated diagonal */}
+            <motion.h1
+              className="absolute top-1/4 left-[28%] text-3xl md:text-5xl lg:text-6xl font-display font-semibold text-white tracking-tight origin-center"
+              style={{ 
+                textShadow: '0 4px 20px rgba(0,0,0,0.35)',
+                transform: 'rotate(-12deg)'
               }}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
             >
-              <ChevronDown className="w-6 h-6 text-white/70" />
-            </motion.div>
+              Well Being
+            </motion.h1>
+
+            {/* Bottom-right comment - rotated diagonal */}
+            <motion.p
+              className="absolute top-1/2 right-1/4 text-lg md:text-2xl lg:text-3xl text-white font-serif font-semibold max-w-xs text-right origin-center"
+              style={{ 
+                textShadow: '0 2px 10px rgba(0,0,0,0.3)',
+                transform: 'translate(0, -50%) rotate(15deg)'
+              }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              Energy & Vigor
+            </motion.p>
           </div>
         </div>
 
@@ -141,7 +120,7 @@ const Header = () => {
               {/* Logo for Scrolled State */}
               <Link 
                 href="/" 
-                className={`font-display text-xl font-semibold text-emerald-700 transition-all duration-300 ${
+                className={`font-display text-2xl font-semibold text-emerald-700 transition-all duration-300 ${
                   isScrolled ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0'
                 }`}
               >
@@ -149,8 +128,8 @@ const Header = () => {
               </Link>
 
               {/* Desktop Navigation */}
-              <div className="hidden lg:flex items-center justify-center flex-1">
-                <div className="flex items-center gap-1">
+              <div className="hidden lg:flex items-center justify-center flex-1 overflow-x-auto">
+                <div className="flex items-center gap-0 px-2 whitespace-nowrap">
                   {navItems.map((item, index) => {
                     const isActive = pathname === item.href || 
                                    (item.href !== '/' && pathname.startsWith(item.href)) ||
@@ -165,7 +144,7 @@ const Header = () => {
                       >
                         <Link 
                           href={item.href} 
-                          className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                          className={`relative px-3 py-2 text-sm lg:text-base xl:text-lg font-medium rounded-full transition-all duration-300 whitespace-nowrap ${
                             isActive 
                               ? 'text-emerald-700 bg-emerald-50' 
                               : 'text-gray-600 hover:text-emerald-700 hover:bg-stone-50'
@@ -240,7 +219,7 @@ const Header = () => {
                         <Link 
                           href={item.href}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                          className={`block px-4 py-3 rounded-xl text-base md:text-lg font-medium transition-all ${
                             isActive 
                               ? 'text-emerald-700 bg-emerald-50' 
                               : 'text-gray-600 hover:text-emerald-700 hover:bg-stone-50'

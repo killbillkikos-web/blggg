@@ -198,10 +198,6 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
                 {/* Meta Info */}
                 <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-500">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-emerald-600" />
-                    <time dateTime={post.published}>{formattedDate}</time>
-                  </div>
-                  <div className="flex items-center gap-2">
                     <User className="w-4 h-4 text-emerald-600" />
                     <span>{post.author}</span>
                   </div>

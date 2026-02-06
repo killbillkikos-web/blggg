@@ -100,11 +100,8 @@ export default function SensitivImagoClient() {
             <p className="text-[14px] text-[#333333] mb-[5px]">
               {post.content}
             </p>
-            <div className="text-[12px] text-[#666666] flex justify-between">
+            <div className="text-[12px] text-[#666666]">
               <span>{post.author}</span>
-              <span>
-                {new Date(post.published).toLocaleDateString("el-GR")}
-              </span>
             </div>
             <Link
               href={post.link}

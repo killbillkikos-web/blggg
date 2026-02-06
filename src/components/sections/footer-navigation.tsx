@@ -41,7 +41,7 @@ const FooterNavigation = () => {
           <Rss className="w-4 h-4 text-orange-500" />
           Εγγραφή σε: 
           <a 
-            href="https://diet-web.blogspot.com/feeds/posts/default" 
+            href="https://well-being.blogspot.com/feeds/posts/default" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-teal-600 hover:text-teal-700 font-medium transition-colors"

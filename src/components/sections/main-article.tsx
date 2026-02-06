@@ -50,7 +50,7 @@ const MainArticle = () => {
 
         <div className="mb-10 p-6 bg-gradient-to-r from-teal-50 to-emerald-50 rounded-xl border-l-4 border-teal-500">
           <p className="text-sm text-gray-600 leading-relaxed">
-            Επιλογή, Επεξεργασία και Μετάφραση ερευνών: <span className="font-semibold text-gray-800">Κατερίνα Μηστριώτη</span> - Σύμβουλος Κλινικής Διατροφολογίας και Ολιστικών Εφαρμογών
+            Επιλογή, Επεξεργασία και Μετάφραση ερευνών: <span className="font-semibold text-gray-800">Κατερίνα Μηστριώτη</span> - WELL BEING CONSULTANT
           </p>
           <p className="text-sm text-gray-600 mt-2">
             Πηγές/Έρευνες /Ερευνητές: Βλ. τέλος άρθρου
@@ -61,7 +61,7 @@ const MainArticle = () => {
         <div className="flex justify-center mb-8">
           <div className="relative rounded-xl overflow-hidden shadow-lg">
             <Image 
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/15-2.png"
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-well-being-blogspot-com/assets/images/15-2.png"
               alt="Vitamin D and Sun"
               width={640}
               height={360}
@@ -80,7 +80,7 @@ const MainArticle = () => {
         <div className="flex justify-center mb-8">
           <div className="relative rounded-xl overflow-hidden shadow-lg">
             <Image 
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/19__Vit-D-awareness-offer-3.jpg" 
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-well-being-blogspot-com/assets/images/19__Vit-D-awareness-offer-3.jpg" 
               alt="Vitamin D awareness"
               width={320}
               height={224}
@@ -99,7 +99,7 @@ const MainArticle = () => {
         <div className="flex justify-center mb-8">
           <div className="relative rounded-xl overflow-hidden shadow-lg">
             <Image 
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/vit_d_breast_cancer-4.png"
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-well-being-blogspot-com/assets/images/vit_d_breast_cancer-4.png"
               alt="Vitamin D for Breast Cancer Prevention"
               width={400}
               height={223}
@@ -139,7 +139,7 @@ const MainArticle = () => {
         <div className="flex justify-center mb-8">
           <div className="relative rounded-xl overflow-hidden shadow-lg">
             <Image 
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/18__6222-5.jpg"
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-well-being-blogspot-com/assets/images/18__6222-5.jpg"
               alt="Vitamin D sources"
               width={278}
               height={400}
@@ -182,7 +182,7 @@ const MainArticle = () => {
           <div className="flex justify-center mb-8">
             <div className="relative rounded-xl overflow-hidden shadow-lg">
               <Image 
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/1___vitamin_D-6.jpg"
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-well-being-blogspot-com/assets/images/1___vitamin_D-6.jpg"
                 alt="Woman drinking water in sun"
                 width={400}
                 height={270}
@@ -202,7 +202,7 @@ const MainArticle = () => {
           <div className="flex justify-center mb-8">
             <div className="relative rounded-xl overflow-hidden shadow-lg">
               <Image 
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-diet-web-blogspot-com/assets/images/18__vitamin_D-7.jpg"
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/d22d1fc9-067a-4c79-9954-b33dd595b3db-well-being-blogspot-com/assets/images/18__vitamin_D-7.jpg"
                 alt="Safe sun exposure"
                 width={400}
                 height={266}

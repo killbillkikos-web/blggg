@@ -88,33 +88,7 @@ const Sidebar = () => {
       initial="hidden"
       animate="visible"
     >
-      {/* Search Widget */}
-      <motion.section 
-        variants={itemVariants}
-        className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
-      >
-        <div className="flex items-center gap-2 mb-4">
-          <Search className="w-5 h-5 text-teal-600" />
-          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
-            Αναζήτηση σε αυτό το ιστολόγιο
-          </h2>
-        </div>
-        <form onSubmit={handleSearch} className="relative">
-          <input 
-            type="text" 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-gray-50 border-2 border-transparent rounded-xl px-4 py-3 pr-12 text-sm placeholder:text-gray-400 focus:border-teal-500 focus:bg-white focus:outline-none transition-all"
-            placeholder="Αναζήτηση..."
-          />
-          <button 
-            type="submit"
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-teal-600 transition-colors"
-          >
-            <Search className="w-4 h-4" />
-          </button>
-        </form>
-      </motion.section>
+      {/* Search widget removed per request */}
 
       {/* Contact Info Widget */}
       <motion.section 
@@ -130,44 +104,40 @@ const Sidebar = () => {
             <Sparkles className="w-8 h-8 text-white" />
           </div>
           
-          <h2 className="text-lg font-semibold mb-4">
-            ΟΛΙΣΤΙΚΟΣ ΕΛΕΓΧΟΣ<br />
-            <span className="text-teal-100 font-bold">SENSITIV IMAGO</span>
-          </h2>
-          
-          <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm mb-4">
-            <p className="font-semibold text-lg mb-1">Κατερίνα Μηστριώτη</p>
-            <p className="text-teal-100 text-sm mb-3">
+          <div className="bg-white/10 rounded-xl p-5 backdrop-blur-sm mb-4">
+            <p className="font-semibold text-2xl mb-2">Κατερίνα Μηστριώτη</p>
+            <p className="text-teal-100 text-base md:text-lg mb-3">
               BSc (Hons), MSc<br />
               Well Being Consultant
             </p>
-            <p className="text-teal-200 text-xs leading-relaxed mb-3">
+            <p className="text-teal-200 text-sm md:text-base leading-relaxed mb-3">
               Δημιουργία και Εφαρμογή Ολιστικών Προγραμμάτων Ευεξίας
             </p>
             <div className="border-t border-white/20 pt-3">
-              <p className="text-teal-200 text-xs leading-relaxed">
+              <p className="text-teal-200 text-sm md:text-base leading-relaxed">
                 Εθνικό & Καποδιστριακό Πανεπιστήμιο Αθηνών<br />
                 Natural Health Science College Manchester<br />
                 Metropolitan University
               </p>
             </div>
           </div>
-          
+
           <div className="mt-5 space-y-2">
             <a 
               href="tel:6975301223"
-              className="flex items-center justify-center gap-2 text-white hover:text-teal-100 transition-colors"
+              className="flex items-center justify-center gap-2 text-white hover:text-teal-100 transition-colors text-base"
             >
               <Phone className="w-4 h-4" />
               <span className="font-semibold">6975 30 1223</span>
             </a>
-            <a 
-              href="mailto:k.mistrioti@yahoo.gr" 
-              className="flex items-center justify-center gap-2 text-teal-100 hover:text-white transition-colors text-sm"
-            >
-              <Mail className="w-4 h-4" />
-              <span>k.mistrioti@yahoo.gr</span>
-            </a>
+
+            {/* Moved title lines, email removed */}
+            <div className="mt-3 text-center">
+              <h3 className="text-base md:text-lg font-semibold text-white leading-tight">
+                ΟΛΙΣΤΙΚΟΣ ΕΛΕΓΧΟΣ<br />
+                <span className="text-teal-100 font-bold">SENSITIV IMAGO</span>
+              </h3>
+            </div>
           </div>
         </div>
       </motion.section>
