@@ -38,7 +38,8 @@ export default function SearchPage({ searchParams }: { searchParams: Promise<{ q
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-teal-600 transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-sm text-gray-500 transition-colors mb-4 hover:opacity-70"
+            style={{ color: '#0c06f7' }}
           >
             <ArrowLeft className="w-4 h-4" />
             Πίσω στην αρχική
@@ -49,8 +50,8 @@ export default function SearchPage({ searchParams }: { searchParams: Promise<{ q
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-4"
           >
-            <div className="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center">
-              <Search className="w-7 h-7 text-teal-600" />
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ backgroundColor: 'rgba(12, 6, 247, 0.05)' }}>
+              <Search className="w-7 h-7" style={{ color: '#0c06f7' }} />
             </div>
             <div>
               <h1 className="text-2xl md:text-3xl font-display font-semibold text-gray-900">
@@ -61,7 +62,7 @@ export default function SearchPage({ searchParams }: { searchParams: Promise<{ q
                   'Αναζήτηση...'
                 ) : (
                   <>
-                    Βρέθηκαν <span className="font-semibold text-teal-600">{filteredPosts.length}</span> αποτελέσματα για "<span className="font-medium">{query}</span>"
+                    Βρέθηκαν <span className="font-semibold" style={{ color: '#0c06f7' }}>{filteredPosts.length}</span> αποτελέσματα για "<span className="font-medium">{query}</span>"
                   </>
                 )}
               </p>
@@ -107,7 +108,8 @@ export default function SearchPage({ searchParams }: { searchParams: Promise<{ q
                 </p>
                 <Link 
                   href="/"
-                  className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-teal-600 text-white rounded-full font-medium hover:bg-teal-700 transition-colors"
+                  className="inline-flex items-center gap-2 mt-6 px-6 py-3 text-white rounded-full font-medium transition-colors"
+                  style={{ backgroundColor: '#0c06f7' }}
                 >
                   Επιστροφή στην αρχική
                 </Link>

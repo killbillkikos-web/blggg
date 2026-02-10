@@ -83,7 +83,7 @@ const Sidebar = () => {
 
   return (
     <motion.aside 
-      className="w-full lg:w-[360px] flex flex-col gap-6"
+      className="w-full lg:max-w-[420px] flex flex-col gap-6"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -93,50 +93,52 @@ const Sidebar = () => {
       {/* Contact Info Widget */}
       <motion.section 
         variants={itemVariants}
-        className="bg-gradient-to-br from-teal-600 to-teal-700 rounded-2xl p-6 shadow-lg text-white overflow-hidden relative"
+        className="rounded-2xl shadow-lg overflow-visible relative"
+        style={{ backgroundColor: '#e4e8f3', padding: '28px' }}
       >
-        {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-teal-400/20 rounded-full blur-xl translate-y-1/2 -translate-x-1/2" />
-        
         <div className="relative z-10 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4">
-            <Sparkles className="w-8 h-8 text-white" />
-          </div>
-          
-          <div className="bg-white/10 rounded-xl p-5 backdrop-blur-sm mb-4">
-            <p className="font-semibold text-2xl mb-2">Κατερίνα Μηστριώτη</p>
-            <p className="text-teal-100 text-base md:text-lg mb-3">
-              BSc (Hons), MSc<br />
-              Well Being Consultant
-            </p>
-            <p className="text-teal-200 text-sm md:text-base leading-relaxed mb-3">
-              Δημιουργία και Εφαρμογή Ολιστικών Προγραμμάτων Ευεξίας
-            </p>
-            <div className="border-t border-white/20 pt-3">
-              <p className="text-teal-200 text-sm md:text-base leading-relaxed">
-                Εθνικό & Καποδιστριακό Πανεπιστήμιο Αθηνών<br />
-                Natural Health Science College Manchester<br />
-                Metropolitan University
-              </p>
+          <div className="rounded-xl backdrop-blur-sm" style={{ backgroundColor: 'white', padding: '28px' }}>
+            {/* Logo Image */}
+            <div style={{ marginBottom: '16px' }}>
+              <img 
+                src="/lotus.png" 
+                alt="Logo" 
+                style={{ 
+                  width: '60px', 
+                  height: '60px', 
+                  margin: '0 auto',
+                  display: 'block'
+                }} 
+              />
             </div>
-          </div>
-
-          <div className="mt-5 space-y-2">
-            <a 
-              href="tel:6975301223"
-              className="flex items-center justify-center gap-2 text-white hover:text-teal-100 transition-colors text-base"
-            >
-              <Phone className="w-4 h-4" />
-              <span className="font-semibold">6975 30 1223</span>
-            </a>
-
-            {/* Moved title lines, email removed */}
-            <div className="mt-3 text-center">
-              <h3 className="text-base md:text-lg font-semibold text-white leading-tight">
-                ΟΛΙΣΤΙΚΟΣ ΕΛΕΓΧΟΣ<br />
-                <span className="text-teal-100 font-bold">SENSITIV IMAGO</span>
-              </h3>
+            
+            <div style={{ color: '#0c06f7', fontFamily: 'Constantia, serif', lineHeight: '1.8', fontSize: '16px' }}>
+              <p className="font-semibold" style={{ fontSize: '20px', marginBottom: '4px' }}>Κατερίνα Μηστριώτη</p>
+              <p style={{ marginBottom: '2px' }}>BSc (Hons), MSc</p>
+              <p style={{ marginBottom: '8px' }}>Well Being Consultant</p>
+              
+              <p style={{ marginBottom: '2px' }}>Δημιουργία και Εφαρμογή</p>
+              <p style={{ marginBottom: '8px' }}>Ολιστικών Προγραμμάτων Ευεξίας</p>
+              
+              <div className="border-t my-2" style={{ borderColor: '#0c06f7' }}></div>
+              
+              <p style={{ marginBottom: '2px' }}>Εθνικό & Καποδιστριακό Πανεπιστήμιο Αθηνών</p>
+              <p style={{ marginBottom: '2px' }}>Natural Health Science College Manchester</p>
+              <p style={{ marginBottom: '8px' }}>Metropolitan University</p>
+              
+              <div className="border-t my-2" style={{ borderColor: '#0c06f7' }}></div>
+              
+              <p className="font-semibold" style={{ marginBottom: '2px' }}>Τηλ. 6975 30 1223</p>
+              <a 
+                href="mailto:k.mistrioti@yahoo.gr"
+                className="hover:opacity-80 transition-opacity block"
+                style={{ color: '#0c06f7', textDecoration: 'underline', marginBottom: '8px' }}
+              >
+                e-mail: k.mistrioti@yahoo.gr
+              </a>
+              
+              <p className="font-semibold" style={{ marginBottom: '2px' }}>Ολιστικός Έλεγχος</p>
+              <p className="font-semibold"><u>SENSITIV IMAGO</u></p>
             </div>
           </div>
         </div>
@@ -152,8 +154,8 @@ const Sidebar = () => {
         className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
       >
         <div className="flex items-center gap-2 mb-5">
-          <TrendingUp className="w-5 h-5 text-teal-600" />
-          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
+          <TrendingUp className="w-5 h-5" style={{ color: '#0c06f7' }} />
+          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide" style={{ color: '#0c06f7', fontFamily: 'Constantia, serif' }}>
             Δημοφιλείς αναρτήσεις
           </h2>
         </div>
@@ -216,7 +218,7 @@ const Sidebar = () => {
                     </div>
                   )}
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-semibold text-gray-800 group-hover:text-teal-700 transition-colors line-clamp-2 leading-snug mb-1">
+                    <h3 className="text-sm font-semibold text-gray-800 transition-colors line-clamp-2 leading-snug mb-1 hover:opacity-70" style={{ color: '#0c06f7', fontFamily: 'Constantia, serif' }}>
                       {post.title}
                     </h3>
                     <p className="text-xs text-gray-500 line-clamp-2 leading-relaxed">

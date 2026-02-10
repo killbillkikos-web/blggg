@@ -18,7 +18,8 @@ const FooterNavigation = () => {
           {/* Home Link */}
           <Link 
             href="/"
-            className="flex items-center gap-2 text-sm font-medium text-teal-600 hover:text-teal-700 transition-colors"
+            className="flex items-center gap-2 text-sm font-medium transition-colors"
+            style={{ color: '#0c06f7' }}
           >
             <Home className="w-4 h-4" />
             Αρχική σελίδα
@@ -27,7 +28,8 @@ const FooterNavigation = () => {
           {/* Older Posts */}
           <Link 
             href="/"
-            className="flex items-center gap-2 text-sm font-medium text-teal-600 hover:text-teal-700 transition-colors"
+            className="flex items-center gap-2 text-sm font-medium transition-colors"
+            style={{ color: '#0c06f7' }}
           >
             Παλαιότερες αναρτήσεις
             <ArrowRight className="w-4 h-4" />
@@ -44,7 +46,8 @@ const FooterNavigation = () => {
             href="https://well-being.blogspot.com/feeds/posts/default" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-teal-600 hover:text-teal-700 font-medium transition-colors"
+            className="font-medium transition-colors hover:opacity-70"
+            style={{ color: '#0c06f7' }}
           >
             Σχόλια (Atom)
           </a>

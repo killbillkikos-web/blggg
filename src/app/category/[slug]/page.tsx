@@ -32,7 +32,8 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-teal-600 transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-sm text-gray-500 transition-colors mb-4 hover:opacity-70"
+            style={{ color: '#0c06f7' }}
           >
             <ArrowLeft className="w-4 h-4" />
             Πίσω στην αρχική
@@ -43,12 +44,12 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-4"
           >
-            <div className="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center">
-              <Tag className="w-7 h-7 text-teal-600" />
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ backgroundColor: 'rgba(12, 6, 247, 0.05)' }}>
+              <Tag className="w-7 h-7" style={{ color: '#0c06f7' }} />
             </div>
             <div>
               <p className="text-sm text-gray-500 mb-1">Κατηγορία</p>
-              <h1 className="text-2xl md:text-3xl font-display font-semibold text-gray-900">
+              <h1 className="text-2xl md:text-3xl font-semibold text-gray-900" style={{ fontFamily: 'Constantia, serif', color: '#0c06f7' }}>
                 {categoryDisplayName}
               </h1>
             </div>

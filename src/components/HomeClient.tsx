@@ -75,7 +75,7 @@ export default function HomeClient() {
   if (isLoading) {
     return (
       <div className="bg-white rounded-2xl p-12 text-center shadow-sm border border-gray-100">
-        <div className="w-8 h-8 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <div className="w-8 h-8 border-4 border-t-transparent rounded-full animate-spin mx-auto" style={{ borderColor: 'rgba(12, 6, 247, 0.2)', borderTopColor: '#0c06f7' }}></div>
         <p className="mt-4 text-gray-500">Φόρτωση άρθρων...</p>
       </div>
     );

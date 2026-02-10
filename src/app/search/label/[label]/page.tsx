@@ -37,7 +37,8 @@ export default function LabelPage({ params }: { params: Promise<{ label: string 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-teal-600 transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-sm text-gray-500 transition-colors mb-4 hover:opacity-70"
+            style={{ color: '#0c06f7' }}
           >
             <ArrowLeft className="w-4 h-4" />
             Πίσω στην αρχική
@@ -48,8 +49,8 @@ export default function LabelPage({ params }: { params: Promise<{ label: string 
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-4"
           >
-            <div className="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center">
-              <Tag className="w-7 h-7 text-teal-600" />
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ backgroundColor: 'rgba(12, 6, 247, 0.05)' }}>
+              <Tag className="w-7 h-7" style={{ color: '#0c06f7' }} />
             </div>
             <div>
               <p className="text-sm text-gray-500 mb-1">Εμφάνιση αναρτήσεων με ετικέτα</p>
@@ -58,7 +59,7 @@ export default function LabelPage({ params }: { params: Promise<{ label: string 
               </h1>
               {!isLoading && (
                 <p className="text-gray-500 mt-1">
-                  <span className="font-semibold text-teal-600">{filteredPosts.length}</span> αναρτήσεις
+                  <span className="font-semibold" style={{ color: '#0c06f7' }}>{filteredPosts.length}</span> αναρτήσεις
                 </p>
               )}
             </div>
@@ -72,7 +73,8 @@ export default function LabelPage({ params }: { params: Promise<{ label: string 
           >
             <Link 
               href="/"
-              className="inline-flex items-center gap-1 text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors"
+              className="inline-flex items-center gap-1 text-sm font-medium transition-colors hover:opacity-70"
+              style={{ color: '#0c06f7' }}
             >
               Εμφάνιση όλων των αναρτήσεων
               <ArrowLeft className="w-3 h-3 rotate-180" />
@@ -118,7 +120,8 @@ export default function LabelPage({ params }: { params: Promise<{ label: string 
                 </p>
                 <Link 
                   href="/"
-                  className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-teal-600 text-white rounded-full font-medium hover:bg-teal-700 transition-colors"
+                  className="inline-flex items-center gap-2 mt-6 px-6 py-3 text-white rounded-full font-medium transition-colors"
+                  style={{ backgroundColor: '#0c06f7' }}
                 >
                   Επιστροφή στην αρχική
                 </Link>

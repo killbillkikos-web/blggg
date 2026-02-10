@@ -12,11 +12,9 @@ const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const navItems = [
-    { name: 'Αρχική σελίδα', href: '/' },
     { name: 'Articles', href: '/category/articles' },
     { name: 'Healthy Life Style', href: '/category/healthy-life-style' },
     { name: 'Συνταγές Δύναμης', href: '/category/syntagés-dýnamis' },
-    { name: 'Ολιστική Εφαρμογή', href: '/category/olistikí-efarmoghí' },
     { name: 'Sensitiv Imago', href: '/category/sensitiv-imago' },
   ];
 
@@ -33,7 +31,8 @@ const Header = () => {
       {/* Skip to Content Link - Accessibility */}
       <a 
         href="#main-content" 
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-emerald-600 focus:text-white focus:rounded-lg focus:outline-none"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:text-white focus:rounded-lg focus:outline-none"
+                style={{ '--tw-bg-opacity': 1, backgroundColor: '#0c06f7' } as any}
       >
         Μετάβαση στο περιεχόμενο
       </a>
@@ -51,12 +50,13 @@ const Header = () => {
           />
           
           {/* Elegant Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-teal-900/30 to-emerald-900/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-blue-900/5" />
           
           {/* Animated Decorative Elements */}
           <motion.div 
-            className="absolute top-20 left-10 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl"
+            className="absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl"
+            style={{ backgroundColor: 'rgba(12, 6, 247, 0.05)' }}
             animate={{ 
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.5, 0.3] 
@@ -64,7 +64,8 @@ const Header = () => {
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div 
-            className="absolute bottom-10 right-10 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl"
+            className="absolute bottom-10 right-10 w-96 h-96 rounded-full blur-3xl"
+            style={{ backgroundColor: 'rgba(12, 6, 247, 0.08)' }}
             animate={{ 
               scale: [1.2, 1, 1.2],
               opacity: [0.4, 0.2, 0.4] 
@@ -74,12 +75,17 @@ const Header = () => {
 
           {/* Hero Content */}
           <div className="relative z-10 h-full px-4">
-            {/* Top-left title - rotated diagonal */}
+            {/* Top-left title - in white background area */}
             <motion.h1
-              className="absolute top-1/4 left-[28%] text-3xl md:text-5xl lg:text-6xl font-display font-semibold text-white tracking-tight origin-center"
+              className="absolute font-semibold tracking-tight origin-center"
               style={{ 
-                textShadow: '0 4px 20px rgba(0,0,0,0.35)',
-                transform: 'rotate(-12deg)'
+                fontFamily: 'Constantia, serif',
+                color: '#0c06f7',
+                textShadow: 'none',
+                fontSize: 'clamp(48px, 8vw, 90px)',
+                top: '15%',
+                left: '10%',
+                transform: 'none'
               }}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
@@ -88,12 +94,18 @@ const Header = () => {
               Well Being
             </motion.h1>
 
-            {/* Bottom-right comment - rotated diagonal */}
+            {/* Bottom-right comment - in white background area */}
             <motion.p
-              className="absolute top-1/2 right-1/4 text-lg md:text-2xl lg:text-3xl text-white font-serif font-semibold max-w-xs text-right origin-center"
+              className="absolute font-semibold origin-center"
               style={{ 
-                textShadow: '0 2px 10px rgba(0,0,0,0.3)',
-                transform: 'translate(0, -50%) rotate(15deg)'
+                fontFamily: 'Constantia, serif',
+                color: '#0c06f7',
+                textShadow: 'none',
+                fontSize: 'clamp(28px, 5vw, 56px)',
+                bottom: '15%',
+                right: '8%',
+                transform: 'none',
+                whiteSpace: 'nowrap'
               }}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -120,9 +132,10 @@ const Header = () => {
               {/* Logo for Scrolled State */}
               <Link 
                 href="/" 
-                className={`font-display text-2xl font-semibold text-emerald-700 transition-all duration-300 ${
+                className={`font-display text-2xl font-semibold transition-all duration-300 ${
                   isScrolled ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0'
                 }`}
+                style={{ color: '#0c06f7', fontFamily: 'Constantia, serif' }}
               >
                 Well Being
               </Link>
@@ -146,14 +159,18 @@ const Header = () => {
                           href={item.href} 
                           className={`relative px-3 py-2 text-sm lg:text-base xl:text-lg font-medium rounded-full transition-all duration-300 whitespace-nowrap ${
                             isActive 
-                              ? 'text-emerald-700 bg-emerald-50' 
-                              : 'text-gray-600 hover:text-emerald-700 hover:bg-stone-50'
+                              ? 'bg-blue-50' 
+                              : 'text-gray-600 hover:text-gray-800 hover:bg-stone-50'
                           }`}
+                          style={{
+                            color: isActive ? '#0c06f7' : undefined
+                          }}
                         >
                           {item.name}
                           {isActive && (
                             <motion.div
-                              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-emerald-500"
+                              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-500"
+                              style={{ backgroundColor: '#0c06f7' }}
                               layoutId="activeIndicator"
                             />
                           )}
@@ -168,7 +185,8 @@ const Header = () => {
               <div className="flex items-center gap-3">
                 <motion.button
                   onClick={() => setIsSearchOpen(true)}
-                  className="p-2 text-gray-500 hover:text-emerald-600 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                  className="p-2 text-gray-500 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
+                  style={{ '--tw-ring-color': '#0c06f7' } as any}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   aria-label="Άνοιγμα αναζήτησης"
@@ -179,7 +197,8 @@ const Header = () => {
                 {/* Mobile Menu Button */}
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="lg:hidden p-2 text-gray-500 hover:text-emerald-600 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+                  className="lg:hidden p-2 text-gray-500 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
+                  style={{ '--tw-ring-color': '#0c06f7' } as any}
                   aria-expanded={isMobileMenuOpen}
                   aria-controls="mobile-menu"
                   aria-label={isMobileMenuOpen ? "Κλείσιμο μενού" : "Άνοιγμα μενού"}
@@ -221,9 +240,12 @@ const Header = () => {
                           onClick={() => setIsMobileMenuOpen(false)}
                           className={`block px-4 py-3 rounded-xl text-base md:text-lg font-medium transition-all ${
                             isActive 
-                              ? 'text-emerald-700 bg-emerald-50' 
-                              : 'text-gray-600 hover:text-emerald-700 hover:bg-stone-50'
+                              ? 'bg-blue-50' 
+                              : 'text-gray-600 hover:text-gray-800 hover:bg-stone-50'
                           }`}
+                          style={{
+                            color: isActive ? '#0c06f7' : undefined
+                          }}
                         >
                           {item.name}
                         </Link>
@@ -275,7 +297,8 @@ const Header = () => {
                   <button
                     type="button"
                     onClick={() => setIsSearchOpen(false)}
-                    className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2"
+                    style={{ '--tw-ring-color': '#0c06f7' } as any}
                     aria-label="Κλείσιμο αναζήτησης"
                   >
                     <X className="w-5 h-5" />

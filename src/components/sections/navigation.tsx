@@ -4,11 +4,9 @@ import React from 'react';
 const Navigation = () => {
   // Navigation tabs data from content and HTML structure
   const tabs = [
-    { label: "Αρχική σελίδα", href: "/", active: true },
     { label: "Articles", href: "/category/articles", active: false },
     { label: "Healthy Life Style", href: "/category/healthy-life-style", active: false },
     { label: "Συνταγές Δύναμης", href: "/category/syntagés-dýnamis", active: false },
-    { label: "Ολιστική Εφαρμογή", href: "/category/olistikí-efarmoghí", active: false },
     { label: "Sensitiv Imago", href: "/p/sensitiv-imago", active: false },
   ];
 

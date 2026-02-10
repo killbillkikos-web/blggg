@@ -17,13 +17,13 @@ const MainArticle = () => {
       <div className="p-6 md:p-10 pb-0">
         {/* Date Header */}
         <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-          <Calendar className="w-4 h-4 text-teal-600" />
+          <Calendar className="w-4 h-4" style={{ color: '#0c06f7' }} />
           <span>Τετάρτη 6 Μαΐου 2020</span>
         </div>
 
         {/* Post Title */}
-        <h1 className="text-3xl md:text-4xl font-display font-semibold text-gray-900 leading-tight mb-6">
-          <Link href="#" className="hover:text-teal-700 transition-colors">
+        <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 leading-tight mb-6" style={{ fontFamily: 'Constantia, serif' }}>
+          <Link href="#" className="transition-colors" style={{ color: '#0c06f7' }}>
             Μήπως δεν εκτίθεστε όσο πρέπει;
           </Link>
         </h1>
@@ -35,7 +35,7 @@ const MainArticle = () => {
       {/* Article Content */}
       <div className="prose prose-lg max-w-none px-6 md:px-10">
         <div className="mb-8">
-          <h2 className="text-2xl font-display font-semibold text-gray-900 underline decoration-teal-500 decoration-2 underline-offset-4 mb-6">
+          <h2 className="text-2xl font-semibold text-gray-900 decoration-2 underline-offset-4 mb-6" style={{ fontFamily: 'Constantia, serif', textDecorationColor: '#0c06f7', textDecoration: 'underline' }}>
             Εκτεθείτε…. στον Ήλιο,
           </h2>
           <div className="flex flex-col items-center text-center italic mb-6 space-y-1">
@@ -48,7 +48,7 @@ const MainArticle = () => {
           </div>
         </div>
 
-        <div className="mb-10 p-6 bg-gradient-to-r from-teal-50 to-emerald-50 rounded-xl border-l-4 border-teal-500">
+        <div className="mb-10 p-6 rounded-xl border-l-4" style={{ backgroundColor: 'rgba(12, 6, 247, 0.05)', borderLeftColor: '#0c06f7' }}>
           <p className="text-sm text-gray-600 leading-relaxed">
             Επιλογή, Επεξεργασία και Μετάφραση ερευνών: <span className="font-semibold text-gray-800">Κατερίνα Μηστριώτη</span> - WELL BEING CONSULTANT
           </p>
@@ -70,7 +70,7 @@ const MainArticle = () => {
           </div>
         </div>
 
-        <blockquote className="my-8 pl-6 border-l-4 border-teal-500 bg-gradient-to-r from-teal-50 to-transparent py-4 pr-4 rounded-r-xl">
+        <blockquote className="my-8 pl-6 border-l-4 py-4 pr-4 rounded-r-xl" style={{ borderLeftColor: '#0c06f7', backgroundColor: 'rgba(12, 6, 247, 0.05)' }}>
           <p className="italic text-gray-700 leading-relaxed">
             Σύμφωνα με σοβαρές επιστημονικές έρευνες, «οι γυναίκες με χαμηλά επίπεδα Βιταμίνης D στο αίμα, έχουν σχεδόν διπλάσιες (97%) πιθανότητες να αναπτύξουν καρκίνο του μαστού σε σύγκριση με εκείνες με τα υψηλότερα επίπεδα».
           </p>
@@ -110,15 +110,15 @@ const MainArticle = () => {
 
         <ul className="italic mb-8 list-none space-y-3">
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 text-sm font-semibold flex-shrink-0">α</span>
+            <span className="w-6 h-6 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0" style={{ backgroundColor: 'rgba(12, 6, 247, 0.1)', color: '#0c06f7' }}>α</span>
             <span className="text-gray-700">της συχνότητας εμφάνισης,</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 text-sm font-semibold flex-shrink-0">β</span>
+            <span className="w-6 h-6 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0" style={{ backgroundColor: 'rgba(12, 6, 247, 0.1)', color: '#0c06f7' }}>β</span>
             <span className="text-gray-700">την βελτίωση της πρόγνωσης και</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 text-sm font-semibold flex-shrink-0">γ</span>
+            <span className="w-6 h-6 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0" style={{ backgroundColor: 'rgba(12, 6, 247, 0.1)', color: '#0c06f7' }}>γ</span>
             <span className="text-gray-700">της έκβασης του καρκίνου!</span>
           </li>
         </ul>
@@ -132,7 +132,7 @@ const MainArticle = () => {
           Είναι ο πρόδρομος της ισχυρής στεροειδούς ορμόνης καλσιτριόλης, η οποία έχει εκτεταμένες δράσεις σε ολόκληρο τον οργανισμό, ρυθμίζοντας πολλές κυτταρικές διεργασίες που θα μπορούσαν να παίζουν ρόλο στην πρόληψη μιας σειράς καρκίνων (μαστού, παχέως εντέρου, ουροδόχου κύστεως, προστάτη αλλά και άλλων σοβαρών παθήσεων).
         </p>
 
-        <p className="italic mb-6 text-teal-700 font-medium">
+        <p className="italic mb-6 font-medium" style={{ color: '#0c06f7' }}>
           Από την τροφή μας μπορούμε να πάρουμε ελάχιστη ποσότητα Βιταμίνης D (D3) από την συνολική που χρειαζόμαστε.
         </p>
 
@@ -162,7 +162,7 @@ const MainArticle = () => {
 
         {/* Sun Exposure Section */}
         <div className="mb-10">
-          <h3 className="text-xl font-display font-semibold italic border-b-2 border-teal-500 pb-2 mb-6">
+          <h3 className="text-xl font-semibold italic border-b-2 pb-2 mb-6" style={{ fontFamily: 'Constantia, serif', borderBottomColor: '#0c06f7', color: '#0c06f7' }}>
             *Σωστός τρόπος έκθεσης στον ήλιο:
           </h3>
           
@@ -191,7 +191,7 @@ const MainArticle = () => {
             </div>
           </div>
 
-          <p className="italic text-center font-semibold text-teal-700 mb-8 text-lg">
+          <p className="italic text-center font-semibold mb-8 text-lg" style={{ color: '#0c06f7' }}>
             Πάντοτε ενυδατωμένοι το καλοκαίρι κατά την διάρκεια της έκθεσής μας στον ήλιο (πίνουμε συχνά νερό)
           </p>
 
@@ -257,7 +257,7 @@ const MainArticle = () => {
           
           {/* Author Info */}
           <div className="text-sm text-gray-500 italic">
-            Αναρτήθηκε από <Link href="#" className="text-teal-600 hover:text-teal-700 font-medium">Katerina Mistrioti</Link> στις 2:57 μ.μ.
+            Αναρτήθηκε από <Link href="#" className="font-medium transition-colors hover:opacity-70" style={{ color: '#0c06f7' }}>Katerina Mistrioti</Link> στις 2:57 μ.μ.
           </div>
         </div>
       </div>
@@ -267,21 +267,24 @@ const MainArticle = () => {
         <div className="flex justify-between items-center text-sm">
           <Link 
             href="#" 
-            className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium transition-colors"
+            className="flex items-center gap-2 font-medium transition-colors hover:opacity-70"
+            style={{ color: '#0c06f7' }}
           >
             <ArrowLeft className="w-4 h-4" />
             Νεότερη ανάρτηση
           </Link>
           <Link 
             href="/" 
-            className="flex items-center gap-2 text-gray-600 hover:text-teal-600 transition-colors"
+            className="flex items-center gap-2 text-gray-600 hover:opacity-70 transition-colors"
+            style={{ color: '#0c06f7' }}
           >
             <Home className="w-4 h-4" />
             Αρχική σελίδα
           </Link>
           <Link 
             href="#" 
-            className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium transition-colors"
+            className="flex items-center gap-2 font-medium transition-colors hover:opacity-70"
+            style={{ color: '#0c06f7' }}
           >
             Παλαιότερες αναρτήσεις
             <ArrowRight className="w-4 h-4" />

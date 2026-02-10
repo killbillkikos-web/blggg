@@ -141,7 +141,8 @@ const PostItem = ({ post, index }: { post: Post; index: number }) => {
           <h2 className="mb-4">
             <Link 
               href={`/post/${post.id.split('-').pop()}`}
-              className="text-2xl md:text-3xl font-display font-semibold text-gray-900 hover:text-emerald-700 transition-colors duration-300 leading-tight link-hover-underline"
+              className="text-2xl md:text-3xl font-semibold text-gray-900 transition-colors duration-300 leading-tight link-hover-underline hover:opacity-70"
+              style={{ fontFamily: 'Constantia, serif', color: '#0c06f7' }}
             >
               {post.title}
             </Link>
@@ -158,7 +159,8 @@ const PostItem = ({ post, index }: { post: Post; index: number }) => {
               <Link
                 key={label}
                 href={`/search/label/${label}`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-medium rounded-full hover:bg-emerald-100 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full transition-colors"
+                style={{ backgroundColor: 'rgba(12, 6, 247, 0.1)', color: '#0c06f7' }}
               >
                 <Tag className="w-3 h-3" />
                 {label}
@@ -194,7 +196,12 @@ const PostItem = ({ post, index }: { post: Post; index: number }) => {
             {/* Read More */}
             <Link 
               href={`/post/${post.id.split('-').pop()}`}
-              className="group/btn inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 text-white text-sm font-medium rounded-full hover:bg-emerald-700 transition-all duration-300 shadow-md hover:shadow-lg btn-press"
+              className="group/btn inline-flex items-center gap-2 px-6 py-2.5 text-sm font-bold rounded-full transition-all duration-300 shadow-sm hover:shadow-md btn-press"
+              style={{ 
+                backgroundColor: 'white',
+                color: '#0c06f7',
+                border: '2px solid #0c06f7'
+              }}
             >
               Διαβάστε περισσότερα
               <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />

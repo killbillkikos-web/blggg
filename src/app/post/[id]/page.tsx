@@ -103,7 +103,7 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
   if (!id || isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-teal-600 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-t-transparent rounded-full animate-spin" style={{ borderColor: 'rgba(12, 6, 247, 0.2)', borderTopColor: '#0c06f7' }} />
       </div>
     );
   }
@@ -185,7 +185,8 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
             {/* Back Link */}
             <Link 
               href="/"
-              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 transition-colors mb-6 group"
+              className="inline-flex items-center gap-2 text-sm text-gray-500 transition-colors mb-6 group hover:opacity-70"
+              style={{ color: '#0c06f7' }}
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               Πίσω στην αρχική
@@ -198,7 +199,7 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
                 {/* Meta Info */}
                 <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-500">
                   <div className="flex items-center gap-2">
-                    <User className="w-4 h-4 text-emerald-600" />
+                    <User className="w-4 h-4" style={{ color: '#0c06f7' }} />
                     <span>{post.author}</span>
                   </div>
                   {/* Reading Time */}
@@ -209,7 +210,7 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
                 </div>
 
                 {/* Title */}
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-gray-900 leading-tight mb-6">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 leading-tight mb-6" style={{ fontFamily: 'Constantia, serif', color: '#0c06f7' }}>
                   {post.title}
                 </h1>
 
@@ -219,7 +220,8 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
                     <Link
                       key={label}
                       href={`/search/label/${label}`}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-medium rounded-full hover:bg-emerald-100 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full transition-colors"
+                      style={{ backgroundColor: 'rgba(12, 6, 247, 0.1)', color: '#0c06f7' }}
                     >
                       <Tag className="w-3 h-3" />
                       {label}
@@ -298,9 +300,10 @@ export default function PostPage({ params }: { params: Promise<{ id: string }> }
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 p-4 bg-emerald-600 text-white rounded-full shadow-lg transition-all duration-300 z-50 ${
+        className={`fixed bottom-8 right-8 p-4 text-white rounded-full shadow-lg transition-all duration-300 z-50 ${
           showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}
+        style={{ backgroundColor: '#0c06f7' }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Πίσω στην κορυφή"
