@@ -104,8 +104,8 @@ const Sidebar = () => {
                 src="/lotus.png" 
                 alt="Logo" 
                 style={{ 
-                  width: '60px', 
-                  height: '60px', 
+                  width: '90px', 
+                  height: '90px', 
                   margin: '0 auto',
                   display: 'block'
                 }} 
@@ -122,7 +122,7 @@ const Sidebar = () => {
               
               <div className="border-t my-2" style={{ borderColor: '#0c06f7' }}></div>
               
-              <p style={{ marginBottom: '2px' }}>Εθνικό & Καποδιστριακό Πανεπιστήμιο Αθηνών</p>
+              <p style={{ marginBottom: '2px', whiteSpace: 'nowrap' }}>Εθνικό & Καποδιστριακό Πανεπιστήμιο Αθηνών</p>
               <p style={{ marginBottom: '2px' }}>Natural Health Science College Manchester</p>
               <p style={{ marginBottom: '8px' }}>Metropolitan University</p>
               
